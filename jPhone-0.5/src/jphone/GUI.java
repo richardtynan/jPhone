@@ -51,8 +51,8 @@ public class GUI implements CellTowersListener {
 
 		JTabbedPane tabs = new JTabbedPane();
 
-		PhonePanel phonePanel = new PhonePanel();
-		tabs.addTab("Phone", phonePanel);
+		//PhonePanel phonePanel = new PhonePanel();
+		//tabs.addTab("Phone", phonePanel);
 
 		ChannelPanel channelPanel = new ChannelPanel(mobile);
 		JScrollPane channelPane = new JScrollPane(channelPanel);
