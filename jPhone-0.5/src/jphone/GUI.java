@@ -29,7 +29,6 @@ import javax.swing.JTabbedPane;
 import jphone.data.CellTowersListener;
 import jphone.data.MobileStation;
 import jphone.gui.ChannelPanel;
-import jphone.gui.PhonePanel;
 import jphone.gui.RamProgress;
 import jphone.gui.RxTxPanel;
 import jphone.gui.ScanPanel;
