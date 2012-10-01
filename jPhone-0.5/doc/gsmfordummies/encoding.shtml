@@ -1,0 +1,448 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML>
+
+<HEAD>
+<TITLE>Speech and Channel Coding</TITLE>
+
+<META name="keywords" content="analog digital conversion, linear predictive encoding, block coding, comvolutional coding, reordering, partitioning, interleaving">
+<META name="description" content="A tutorial about the Speech Encoding and Block Coding in GSM.">
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20814942-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</HEAD>
+
+<BODY>
+
+
+
+<br><br>
+
+
+<center>
+
+<h1>Speech Coding</h1>
+
+<font size = "2">
+
+<a href = "../encoding/encoding.shtml#adc">Analog/Digital Conversion</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../encoding/encoding.shtml#lpc">Speech Coding</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../encoding/encoding.shtml#block">Block Coding</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../encoding/encoding.shtml#conv">Convolutional Coding</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../encoding/encoding.shtml#repart">Reordering & Partioning</a>
+&nbsp;&nbsp;&nbsp;
+
+
+
+
+</font>
+
+
+
+<br><br>
+<a href = "http://www.gsmfordummies.com/index.html">Home</a>
+
+<hr width=100% size=5 noshade>
+<br><br>
+
+</center>
+
+
+<br><br>
+
+<a name="adc"></a>
+<center>
+<h2>Analog to Digital Conversion</h2>
+</center>
+
+
+In order to fully understand speech and channel coding it is easier to start from the very beginning of the process. The first step in speech coding is to transform the sound waves of our voices (and other ambient noise) into an electrical signal. This is done by a <i>microphone</i>. A microphone consists of a diaphragm, a magnet, and a coil of wire. When you speak into it, sound waves created by your voice vibrate the diaphragm which is connected to the magnet which is inside the coil of wire. These vibrations cause the magnet to move inside the coil at the same frequency as your voice. A magnet moving in a coil of wire creates an electric current. This current which is at the same frequency as the sound waves is carried by wires to whereever you wish it to go like an amplifier, transmitter, etc. Once it gets to its destination the process is reversed and it comes out as sound. Speakers basically being the opposite of microphones. 
+
+The signal created by a microphone is an analog signal. Since GSM is an all digital system, this analog signal is not suitable for use on a GSM network. The analog signal must be converted into digital form. This is done by using an Analog to Digital Converter (ADC).
+
+<br><br>
+
+In order to reduce the amount of data needed to represent the sound wave, the analog signal is first inputted into a <i>band pass filter</i>. Band pass means that the filter only allows signal that fall within a certain frequency range to pass through it, and all other signals are cut off, or <i>attenuated</i>. The BP filter only allows frequencies between 300Hz and 3.4 kHz to pass through it. This limits the amount of data that the Analog/Digital Converter is required to process.
+
+<br><br>
+
+<center>
+<img src = "images/bandpass.gif">
+<h4>Band Pass Filter</h4>
+<br><br>
+</center>
+
+
+The filtered signal is inputted into the analog/digital converter. The analog/digital converter performs two tasks. It converts an analog signal into a digital signal and it does the opposite, converts a digital signal into an analog signal. 
+
+<br><br>
+
+In the case of a cell phone, the analog signal created by a microphone is passed to the analog/digital converter. The A/D converter measures the analog signal, or <i>samples</i> it 8000 times per second. This means that the ADC takes a sample of the analog signal every .125 sec (125 &micro;s). Each sample is quantified with a 13-bit data block. If we calculate 13 bits per sample at 8000 samples per second, we determine a data rate of 104,000 bits per second, or 104 kb/s.
+
+<br><br>
+<center>
+<img src = "images/adc1.gif">
+<h4>Analog/Digital Converter</h4>
+</center>
+
+<br><br>
+
+A data rate of 104 kbps is far too large to be economically handled by a radio transmitter. In order to reduce the bitrate, the signal is inputted into a speech encoder.A speech encoder is a device that compresses the data of a speech signal. There are many types of speech encoding schemes available. The speech encoder used in GSM is called Linear Predictive Coding (LPC) and Regular Pulse Excitation (RPE). LPC is a very complicated and math-heavy process, so it will only be summarized here. 
+
+<br><br>
+
+<font size = "2"> <a href = "#top">[Back to Top]</a></font>
+<br>
+<hr width = 100%>
+<br>
+
+
+<a name="lpc"></a>
+<center>
+<h2>Linear Predictive Coding (LPC)</h2>
+</center>
+
+Remember that the ADC quantifies each audio sample with a 13-bit "word". In LPC, 160 of the 13-bit samples from the converter are saved up and stored into short-term memory. Remember that a sample is taken every 125 &micro;s, so 160 samples covers an audio block of 20ms. This 20ms audio block consists of 2080 bits. LPC-RPE analyzes each 20ms set of data and determines 8 coefficients used for filtering as well as an excitation signal. LPC basically identifies specific bits that correspond to specific aspects of human voice, such as vocal modifiers (teeth, tongue, etc.) and assigns coefficients to them. The excitation signal represents things like pitch and loudness. LPC identifies a number of correlations of human voice and redundancies in human speech and removes them.
+
+<br><br>
+
+The LPC/RPE sequence is then fed into the Long-Term Prediction (LTP) Analysis function. The LTP function compares the sequence it receives with earlier sequences stored in its memory and selects the sequence that most resembles the current sequence. The LTP function then calculates the difference between the two sequences. Now the LTP function only has to translate the difference value as well as a pointer indicating which earlier sequence it used for comparison. By doing this is prevents encoding redundant data. 
+
+<br><br>
+
+You can envision this by thinking about the sounds we make when we talk. When we pronounce a syllable, each little sound has a specific duration that seems short when we are talking but often lasts longer than 20ms. So, one sound might be represented by several 20ms-block of exactly the same data. Rather than transmit redundant data, LPC only includes data that tells the receiving which data is redundant so that it can be created on the receiving end.
+
+<br><br>
+
+Using LPC/RPE and LTP, the speech encoder reduces the 20ms block from 2,080 bits to to 260 bits. Note that this is a reduction by eight times. 260 bits every 20ms gives us a net data rate of 13 kilobits per second (kbps). 
+<br><br>
+<center>
+<img src = "images/encoding1.gif">
+<h4>Speech Encoding</h4>
+<br><br>
+</center>
+
+
+This bitrate of 13kbps is known as Full Rate Speech (FS). There is another method for encoding speech called Half Rate Speech (HS), which results in a bit rate of approximately 5.6kbps. The explanations in the remainder of this tutorial are based on a full-rate speech bitrate (13kbps).
+
+<br><br>
+
+<b>Calculate the net data rate:</b><br><br>
+<table border = "2">
+
+	<tr>
+		<th><center>Description</center></th>
+		<th><center>Formula</center></th>
+		<th><center>Result</center></th>
+	</tr>
+
+	<tr>
+		<td><center>Convert ms to sec</center></td>
+		<td><center> 20 ms &#247; 1000 </center></td>
+		<td><center>.02 seconds</center></td>
+	</tr>
+
+	<tr> 
+		<td><center>Calculate bits per second</center></td>
+		<td><center>260 bits &#247; .02 seconds</center></td>
+		<td><center>13,000 bits per second (bps)</center></td>
+	</tr>
+
+
+
+	<tr>	
+		<td><center>Convert bits to kilobits</td>
+		<td><center>13,000 bps &#247; 1000</td>
+		<td><center>13 kilobits per sec (kbps) </td>
+	</tr>
+</table>
+
+<br><br>
+
+As we all know, the audio signal must be transmitted across a radio link from the handset to the Base Station Transceiver (BTS). The signal on this radio link is subject to atmospherics and fading which results in a large amount of data loss and degrades the audio. In order to prevent degradation of audio, the data stream is put through a series of error detection and error correction procedures called <i>channel coding</i>.
+
+The first phase of channel coding is called <i>block coding</i>.
+
+<br><br>
+
+<font size = "2"> <a href = "#top">[Back to Top]</a></font>
+<br>
+<hr width = 100%>
+<br>
+
+
+<a name="block"></a>
+<center>
+<h2>Block Coding</h2>
+</center>
+
+
+A single 260-bit (20ms) audio block is delivered to the block-coder. The 260 bits are divided up into classes according to their importance in reconstructing the audio. Class I are the bits that are most important in reconstructing the audio. The class II bits are the less important bits. Class I bits are further divided into two categories, Ia and Ib.
+
+<br><br>
+
+<center>
+<img src = "images/classbits.gif">
+<h4>Classes of Bits</h4>
+<br><br>
+</center>
+
+
+<br><br>
+
+
+The class Ia bits are protected by a cyclic code. The cyclic code is run on the 50 Ia bits and calculates 3 parity bits which are then appended to the end of the Ia bits. Only the class Ia bits are protected by this cyclic code. The Ia and Ib bits are then combined and an additional 4 bits are added to the tail of the class I bits (Ia and Ib together). All four bits are zeros (0000) and are needed for the next step which is "convolutional coding". There is no protection for class II bits. As you can see, block coding adds seven bits to the audio block, 3 parity bits and 4 tail bits, therefore, a 260-bit block becomes a 267-bit block. 
+
+<br><br>
+
+<center>
+<img src = "images/cycliccode.gif">
+<h4>Block Coding</h4>
+</center>
+
+<br><br>
+
+<font size = "2"> <a href = "#top">[Back to Top]</a></font>
+<br>
+<hr width = 100%>
+<br>
+
+<a name="conv"></a>
+<center>
+<h2>Convolutional Coding</h2>
+</center>
+
+
+
+This 267-bit block is then inputted into a convolutional code. Convolutional coding allows errors to be detected and to be corrected to a limited degree. The class I "protected" bits are inputted into a complex convolutional code that outputs 2 bits for every bit that enters it. The second bit that is produced is known as a redundancy bit. The number of class I bits is doubled from 189 to 378. 
+
+<br><br>
+
+This coding uses 5 consecutive bits to calculate the redundancy bit, this is why there are 4 bits added to the class I bits when the cyclic code was calculated. When the last data bit enters the register, it uses the remaining four bits to calculate the redundancy bit for the last data bit. The class II bits are not run through the convolutional code. After convolutional coding, the audio block is 456 bits
+
+
+<br><br>
+
+<center>
+<img src = "images/convolutional1.gif">
+<h4>Convolutional Coding</h4>
+</center>
+
+<br><br>
+<font size = "2"> <a href = "#top">[Back to Top]</a></font>
+<br>
+<hr width = 100%>
+<br>
+
+
+<a name="repart"></a>
+<center>
+<h2>Reordering, Partitioning, and Interleaving</h2>
+</center>
+
+Now, one problem remains. All of this error detection and error correction coding will not do any good if the entire 456-bit block is lost or garbled. In order to alleviate this, the bits are reordered and partioned onto eight separate sub-blocks. If one sub-block is lost then only one-eighth of the data for each audio block is lost and those bits can be recovered using the convolutional code on the receiving end. This is known as <i>interleaving</i>.
+
+<br><br>
+
+
+Each 456-bit block is reordered and partitioned into 8 sub-blocks of 57 bits each. <a href="images/partitioning.pdf" target = "pdf">Click Here </a> to see the ordering sequence.
+
+<br><br>
+
+These eight 57-bit sub-blocks are then interleaved onto 8 separate bursts. As you remember from the TDMA Tutorial, each burst is composed of two 57-bit data blocks, for a total data payload of 114 bits.
+
+<br><br>
+
+The first four sub-blocks (0 through 3) are mapped onto the even bits of four consecutive bursts. The last four sub-blocks (4 through 7) are mapped onto the odd bits of the next 4 consecutive bursts. So, the entire block is spread out across 8 separate bursts.
+
+<br><br>
+
+Taking a look at the diagram below we see three 456-bit blocks, labeled A, B, and C. Each block is sub-divided into eight sub-blocks numbered 0-7. Let's take a look at Block B. We can see that each sub-block is mapped to a burst on a single time-slot. Block B is mapped onto 8 separate bursts or time-slots. For illustrative purposes, the time-slots are labeled S through Z.
+
+<br><br>
+
+Let's expand time-slot V for a close-up view.  We can see how the bits are mapped onto a burst. The bits from Block B, sub-block 3 (B3) are mapped onto the even numbered bits of the burst (bits 0,2,4....108,110,112). You will also notice that the odd bits are being mapped from data from block A, sub-block 7 (bits 1,3,5....109,111,113). Each burst contains 57 bits of data from two separate 456-bit blocks. This process is known as <i>interleaving</i>.
+
+
+<br><br>
+
+<center>
+<img src = "images/interleaving.gif">
+<h4>Reordering, Partitioning, and Interleaving</h4>
+<br><br>
+</center>
+
+
+<br><br>
+
+In the following diagram,  we examine time-slot W. We see that bits from B4 are mapped onto the odd-number bits (bits 1,3,5....109,111,113) and we would see bits from C1 mapped onto the even number bits (bits 0,2,4....108,110,112). This process continues indefinitely as data is transmitted. Time-slots W, X, Y, and Z would all be mapped identically. The next time-slot would have data from Block C and Block D mapped onto it. This process continues for as long as there is data being generated.
+
+<br><br>
+
+
+<center>
+<img src = "images/interleaving2.gif">
+<h4>Interleaving</h4>
+<br><br>
+</center>
+
+The process of interleaving effectively distributes a single 456 bit audio block over 8 separate bursts. If one burst is lost, only 1/8 of the data is lost, and the missing bits can be recovered using the convolutional code.
+
+<br><br>
+
+Now, you might notice that the data it takes to represent a 20ms (456-bits) audio block is spread out across 8 timeslots. If you remember that each TDMA frame is approximately 4.615ms, we can determine that it takes about 37ms to transmit one single 456-bit block. It seems like transmitting 20ms worth of audio over a period of 37ms would not work. However, this is not what is truly happening. If you look at a series of blocks as they are mapped onto time-slots you will notice that one sub-block ends every four time-slots, which is approximately 18ms. The only effect this has is that the audio stream is effectively delayed by 20ms, which is truly negligible.
+
+<br><br>
+
+In the diagram below, we can see how this works. The diagram shows 16 bursts. Remember that a burst occurs on a single time-slot and the the duration of a time-slot is 577 &micro;s. Eight time-slots make up a TDMA frame, which is 4.615ms. Since a single resource is only given one time-slot in which to transmit, we only get to transmit once every TDMA frame. Therefore, we only get to transmit one burst every 4.615ms. 
+<br><font size = "2">* If this is not clear, please review the <a href="../tdma/tdma.html">TDMA Tutorial</a>.</font>
+
+<br><br>
+
+During each time-slot, a burst is transmitted that carries data from two different 456-bit blocks. In the diagram below, Burst 1 carries data from A and B, burst 5 has B and C, burst 9 has C and D, etc. Looking at the diagram, we can see that it does take approximately 37ms for Block B to transmit all of its data, (bursts 1-8). However, in bursts 5-8, data from block C is also being transmitted. Once block B has finished transmitting all of its data (burst 8), block C has already transmitted half of its data and only requires 4 more bursts to complete its data.
+
+<br><br>
+
+Block A completes transmitting its data at the end of the fourth burst. Block B finishes in the eighth, block C, in the 12th, and block D in the 16th. Viewing it this way shows us that every fourth burst comepletes the data for one block, which takes approximately 18ms.
+
+<br><br>
+<center>
+<img src = "images/interleaving3.gif">
+</center>
+
+<br><br>
+
+The following diagram illustrates the entire process, from audio sampling to partitioning and interleaving.
+
+
+<br><br>
+<center>
+<img src = "images/summary.gif">
+</center>
+
+<br><br>
+
+Data and signalling messages will be covered in a future tutorial.
+
+<br><br>
+
+<center>
+<br>
+
+<hr width=100% size=5 noshade>
+
+<font size = "2">
+
+<a href = "../encoding/encoding.shtml#adc">Analog/Digital Conversion</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../encoding/encoding.shtml#lpc">Speech Coding</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../encoding/encoding.shtml#block">Block Coding</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../encoding/encoding.shtml#conv">Convolutional Coding</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../encoding/encoding.shtml#repart">Reordering & Partioning</a>
+&nbsp;&nbsp;&nbsp;
+
+
+
+
+</font>
+
+
+
+<br><br>
+
+<font size = "2">
+
+<a href = "../intro/intro.shtml">Introduction</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../architecture/arch.shtml">Architecture</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml">TDMA</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/logical.shtml">Logical Channels</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../encryption/encryption.shtml">Authentication & Encryption</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../timing/timing.shtml">Timing Advances</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../encoding/encoding.shtml">Speech Encoding</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../gsmevents/events.shtml">GSM Events</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../air/radiolink.shtml">Cell Selection/Reselection</a>
+
+<br>
+
+<a href = "../updates.shtml">Updates</a>
+&nbsp;&nbsp;&nbsp;
+
+<!--<a href = "../forum/index.php" target = "BB">Bulletin Board</a>
+&nbsp;&nbsp;&nbsp;-->
+
+<a href = "../sitemap.shtml">Sitemap</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../contact/contact.shtml">Contact Me</a>
+
+
+
+
+
+
+</font>
+
+<br><br>
+<a href = "http://www.gsmfordummies.com/index.html">Home</a>
+
+</center>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-6152103-1");
+pageTracker._trackPageview();
+</script>
+
+</BODY>
+
+
+</HTML>
+
+

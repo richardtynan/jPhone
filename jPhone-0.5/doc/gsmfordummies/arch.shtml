@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML>
+<HEAD>
+
+
+
+<br><br>
+
+<TITLE>Network Architecture</TITLE>
+
+<META name="keywords" content="GSM, network, architecture, PLMN, mobile, station, equipment, SIM, subscriber identity module, BTS, base transceiver station, BSC, base station controller, MSC, Mobile switching center, GMSC, gateway, HLR, home location register, VLR, visitor location register, EIR, equipment identity register, authentication center">
+
+<META name="description" content="A GSM tutorial that describes the architecture of a GSM network.">
+
+</HEAD>
+
+<BODY>
+<a name="top">
+
+<center>
+
+<h1>Network Architecture</h1>
+
+<font size = "2">
+
+<a href = "../architecture/arch.shtml#ms">Mobile Station</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../architecture/arch.shtml#bts">Base Transceiver Station</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../architecture/arch.shtml#bsc">Base Station Controller</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../architecture/arch.shtml#msc">Mobile Switching Center</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../architecture/arch.shtml#gmsc">Gateway MSC</a>
+&nbsp;&nbsp;&nbsp;
+
+<br>
+
+<a href = "../architecture/arch.shtml#hlr">Home Location Register</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../architecture/arch.shtml#vlr">Visitor Location Register</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../architecture/arch.shtml#eir">Equipment Identity Register</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../architecture/arch.shtml#auc">Authentication Center</a>
+&nbsp;&nbsp;&nbsp;
+
+
+
+
+</font>
+
+
+<br><br>
+<a href = "http://www.gsmfordummies.com/index.html">Home</a>
+
+<hr width=100% size=5 noshade>
+<br><br>
+
+</center>
+
+<Center><h1>GSM Network Architecture</h1></center>
+A GSM network is made up of multiple components and interfaces that facilitate sending and receiving of signaling and traffic messages. It is a collection of transceivers, controllers, switches, routers, and registers.<br><br> A Public Land Mobile Network (PLMN) is a network that is owned and operated by one GSM service provider or administration, which includes all of the components and equipment as described below. For example, all of the equipment and network resources that is owned and operated by Cingular is considered a PLMN.<br><br>
+
+<br>
+<hr width=100%>
+<br>
+
+
+<a name="ms"></a><h2>Mobile Station (MS)</h2>The Mobile Station (MS) is made up of two components:<br><br><b>Mobile Equipment (ME)</b> This refers to the physical phone itself. The phone must be able to operate on a GSM network. Older phones operated on a single band only. Newer phones are dual-band, triple-band, and even quad-band capable. A quad-band phone has the technical capability to operate on any GSM network worldwide. <br><br>Each phone is uniquely identified by the <i>International Mobile Equipment Identity</i> (IMEI) number. This number is burned into the phone by the manufacturer. The IMEI can usually be found by removing the battery of the phone and reading the panel in the battery well.<br><br>It is possible to change the IMEI on a phone to reflect a different IMEI. This is known as IMEI spoofing or IMEI cloning. This is usually done on stolen phones. The average user does not have the technical ability to change a phone's IMEI.<br><br><b>Subscriber Identity Module (SIM)</b> - The SIM is a small smart card that is inserted into the phone and carries information specific to the subscriber, such as <i>IMSI, TMSI, Ki</i> (used for encryption), Service Provider Name (SPN), and <i>Local Area Identity</i> (LAI). The SIM can also store phone numbers (MSISDN) dialed and received, the <i>Kc</i> (used for encryption), phone books, and data for other applications. A SIM card can be removed from one phone, inserted into another GSM capable phone and the subscriber will get the same service as always.<br><br>
+Each SIM card is protected by a 4-digit Personal Identification Number (PIN). In order to unlock a card, the user must enter the PIN. If a PIN is entered incorrectly three times in a row, the card blocks itself and can not be used. It can only be unblocked with an 8-digit Personal Unblocking Key (PUK), which is also stored on the SIM card.<center><img src = "images/ms.gif"></center><br><br>
+
+<font size = "2"> <a href = "#top">[Back to Top]</a></font>
+
+<br>
+<hr width=100%>
+<br>
+
+
+<a name="bts"></a><h2>Base Transceiver Station (BTS)</h2><b>Base Transceiver Station (BTS)</b> - The BTS is the Mobile Station's access point to the network. It is responsible for carrying out radio communications between the network and the MS. It handles speech encoding, encryption, multiplexing (<i>TDMA</i>), and modulation/demodulation of the radio signals. It is also capable of frequency hopping. A BTS will have between 1 and 16 Transceivers (TRX), depending on the geography and user demand of an area. Each TRX represents one ARFCN.<br><br>
+One BTS usually covers a single 120 degree sector of an area. Usually a tower with 3 BTSs will accommodate all 360 degrees around the tower. However, depending on geography and user demand of an area, a cell may be divided up into one or two sectors, or a cell may be serviced by several BTSs with redundant sector coverage.<br><br>A BTS is assigned a <i>Cell Identity</i>. The cell identity is 16-bit number (double octet) that identifies that cell in a particular <i>Location Area</i>. The cell identity is part of the Cell Global Identification (CGI), which is discussed in the section about the Visitor Location Register (VLR).<br><br><center><img src = "images/sector.gif"><br><h3>120 &deg; Sector</h3></center><br><br>The interface between the MS and the BTS is known as the <i>Um Interface</i> or the <i>Air Interface</i>.<br><br><center><img src = "images/air.gif"><br><h3>Um Interface</h3></center><br><br>
+
+<font size = "2"> <a href = "#top">[Back to Top]</a></font>
+
+<br>
+<hr width=100%>
+<br>
+
+<a name="bsc"></a><h2>Base Station Controller (BSC)</h2>
+<p><b>Base Station Controller (BSC)</b> - The BSC controls multiple BTSs. It handles allocation of radio channels, frequency administration, power and signal measurements from the MS, and handovers from one BTS to another (if both BTSs are controlled by the same BSC). A BSC also functions as a "funneler". It reduces the number of connections to the <i>Mobile Switching Center</i> (MSC) and allows for higher capacity connections to the MSC.<br><br>A BSC my be collocated with a BTS or it may be geographically separate. It may even be collocated with the Mobile Switching Center (MSC).</p>
+<p>&nbsp;</p>
+<center><img src = "images/bsc.gif"><br><h3>Base Station Controller</h3></center><br><br><br><h4>The interface between the BTS and the BSC is known as the <i>Abis Interface</i></h4><br><center><img src="images/abis.gif"><br><h3>Abis Interface</h3></center><br><br><h4>The Base Transceiver Station (BTS) and the Base Station Controller (BSC) together make up the <i>Base Station System</i> (BSS). </h4><br><center><img src = "images/bss.gif"><br><h3>Base Station System</h3></center><br><br>
+
+<font size = "2"> <a href = "#top">[Back to Top]</a></font>
+
+<br>
+<hr width=100%>
+<br>
+
+
+<a name="msc"></a><h2>Mobile Switching Center (MSC)</h2>
+<b>Mobile Switching Center (MSC)</b> - The MSC is the heart of the GSM network. It handles call routing, call setup, and basic switching functions. An MSC handles multiple BSCs and also interfaces with other MSC's and registers. It also handles inter-BSC handoffs as well as coordinates with other MSC's for inter-MSC handoffs.<br><br><center><img src = "images/msc.gif"><br><h3>Mobile Switching Center</h3></center>
+<p><br>
+  <br>The interface between the BSC and the MSC is known as the <i>A Interface</i></p>
+<p>&nbsp;</p>
+<center><img src = "images/alink.gif"><br><h3>A Interface</h3></center><br><br>
+
+<font size = "2"> <a href = "#top">[Back to Top]</a></font>
+
+<br>
+<hr width=100%>
+<br>
+
+
+<a name="gmsc"></a><h2>Gateway Mobile Switching Center (GMSC)</h2>
+There is another important type of MSC, called a Gateway Mobile Switching Center (GMSC). The GMSC functions as a gateway between two networks. If a mobile subscriber wants to place a call to a regular land line, then the call would have to go through a GMSC in order to switch to the Public Switched Telephone Network (PSTN).<br><br><center><img src = "images/gmsc.gif"><br><h3>Gateway Mobile Switching Center</h3></center><br><br>For example, if a subscriber on the Cingular network wants to call a subscriber on a T-Mobile network, the call would have to go through a GMSC.<br><br><center><img src = "images/inter-gmsc.gif"><br><h3>Connections Between Two Networks</h3></center><br><br>The interface between two Mobile Switching Centers (MSC) is called the <i>E Interface</i><br><br><center><img src = "images/elink.gif"><br><h3>E Interface</h3></center><br><br>
+
+<font size = "2"> <a href = "#top">[Back to Top]</a></font>
+
+<br>
+<hr width=100%>
+<br>
+
+
+<a name = "hlr"></a><h2>Home Location Register (HLR)</h2>
+<b>Home Location Register (HLR)</b> - The HLR is a large database that permanently stores data about subscribers. The HLR maintains subscriber-specific information such as the MSISDN, IMSI, current location of the MS, roaming restrictions, and subscriber supplemental features. There is logically only one HLR in any given network, but generally speaking each network has multiple physical HLRs spread out across its network.<br><br>
+
+<font size = "2"> <a href = "#top">[Back to Top]</a></font>
+
+<br>
+<hr width=100%>
+<br>
+
+
+<a name="vlr"></a><h2>Visitor Location Register (VLR)</h2><b>Visitor Location Register (VLR)</b> - The VLR is a database that contains a subset of the information located on the HLR. It contains similar information as the HLR, but only for subscribers currently in its Location Area. There is a VLR for every Location Area. The VLR reduces the overall number of queries to the HLR and thus reduces network traffic. VLRs are often identified by the Location Area Code (LAC) for the area they service. <br><br><center><img src = "images/vlr.gif"><br><h3>Visitor Location Register</h3></center><br><br><b>Location Area Code (LAC)</b><br><br>A LAC is a fixed-length code (two octets) that identifies a location area within the network.  Each Location Area is serviced by a VLR, so we can think of a Location Area Code (LAC) being assigned to a VLR.<br><br><b>Location Area Identity (LAI)</b><br>
+An LAI is a globally unique number that identifies the country, network provider, and LAC of any given Location Area, which coincides with a VLR. It is composed of the Mobile Country Code (MCC), the Mobile Network Code (MNC), and the Location Area Code (LAC). The MCC and the MNC are the same numbers used when forming the IMSI.<br><br><center><img src = "images/lai.gif"><br><h3>Location Area Identity (LAI)</h3></center><br><br><b>Cell Global Identification (CGI)</b><br>The CGI is a number that uniquely identifies a specific cell within its location area, network, and country. The CGI is composed of the MCC, MNC, LAI, and Cell Identity (CI)<br><br><center><img src = "images/cgi.gif"><br><h3>Cell Global Identity</h3></center><br><br>
+The VLR also has one other very important function: the assignment of a Temporary Mobile Subscriber Identity (TMSI). TMSIs are assigned by the VLR to a MS as it comes into its Location Area. TMSIs are only allocated when in cipher mode.<br><br><br><br>The interface between the MSC and the VLR is known as the <i>B Interface</i> and the interface between the VLR and the HLR is known as the <I>D Interface</i>. The interface between two VLRs is called the <i>G Interface</i><br><br><center><img src = "images/hlrvlr.gif"><br>
+<h3>GSM Interfaces</h3></center><br><br>
+
+<font size = "2"> <a href = "#top">[Back to Top]</a></font>
+
+<br>
+<hr width=100%>
+<br>
+
+
+<a name = "eir"></a><h2>Equipment Identity Register (EIR)</h2><b>Equipment Identity Register (EIR)</b> - The EIR is a database that keeps tracks of handsets on the network using the IMEI. There is only one EIR per network. It is composed of three lists. The white list, the gray list, and the black list. <br><br>
+The black list is a list if IMEIs that are to be denied service by the network for some reason. Reasons include the IMEI being listed as stolen or cloned or if the handset is malfunctioning or doesnt have the technical capabilities to operate on the network.<br><br>
+The gray list is a list of IMEIs that are to be monitored for suspicious activity. This could include handsets that are behaving oddly or not performing as the network expects it to.<br><br>The white list is an unpopulated list. That means if an IMEI is not on the black list or on the gray list, then it is considered good and is "on the white list".<br><br>The interface between the MSC and the EIR is called the <i>F Interface</i>.<br><br><center><img src = "images/eir.gif"><br><h3>Equipment Identity Register</h3></center><br><br>
+
+<font size = "2"> <a href = "#top">[Back to Top]</a></font>
+
+<br>
+<hr width=100%>
+<br>
+
+
+<a name="auc"></a><h2>Authentication Center (Auc)</h2>
+<b>Authentication Center (AuC)</b> - The AuC is responsible for generating the necessary cryptovariables for <a href="../encryption/encryption.shtml" target="encryption">authentication and encryption</a> on the network. These variables are the RAND, SRES, and Kc. The Auc also stores the Ki for each IMSI on the network.   Although it is not required, the Auc is normally physically collocated with the HLR. <br><br><center><img src = "images/auc.gif"><br><h3>Authentication Center</h3></center><br><br>There is one last interface that we haven't discussed. The interface between the HLR and a GMSC is called the <i>C Interface</i>. You will see it in the full network diagram below.This completes the introduction to the network architecture of a GSM network. Below you will find a network diagram with all of the components as well as the names of all of the interfaces.<br><br><center><img src = "images/fullnetwork.gif"><br><h3>Full GSM Network</h3></center><br><br>
+
+<center>
+<br>
+
+<hr width=100% size=5 noshade>
+
+<font size = "2">
+
+<a href = "../architecture/arch.shtml#ms">Mobile Station</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../architecture/arch.shtml#bts">Base Transceiver Station</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../architecture/arch.shtml#bsc">Base Station Controller</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../architecture/arch.shtml#msc">Mobile Switching Center</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../architecture/arch.shtml#gmsc">Gateway MSC</a>
+&nbsp;&nbsp;&nbsp;
+
+<br>
+
+<a href = "../architecture/arch.shtml#hlr">Home Location Register</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../architecture/arch.shtml#vlr">Visitor Location Register</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../architecture/arch.shtml#eir">Equipment Identity Register</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../architecture/arch.shtml#auc">Authentication Center</a>
+&nbsp;&nbsp;&nbsp;
+
+
+
+
+</font>
+
+
+<br><br>
+
+<font size = "2">
+
+<a href = "../intro/intro.shtml">Introduction</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../architecture/arch.shtml">Architecture</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml">TDMA</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/logical.shtml">Logical Channels</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../encryption/encryption.shtml">Authentication & Encryption</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../timing/timing.shtml">Timing Advances</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../encoding/encoding.shtml">Speech Encoding</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../gsmevents/events.shtml">GSM Events</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../air/radiolink.shtml">Cell Selection/Reselection</a>
+
+<br>
+
+<a href = "../updates.shtml">Updates</a>
+&nbsp;&nbsp;&nbsp;
+
+<!--<a href = "../forum/index.php" target = "BB">Bulletin Board</a>
+&nbsp;&nbsp;&nbsp;-->
+
+<a href = "../sitemap.shtml">Sitemap</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../contact/contact.shtml">Contact Me</a>
+
+
+
+
+
+
+</font>
+
+<br><br>
+<a href = "http://www.gsmfordummies.com/index.html">Home</a>
+
+</center>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-6152103-1");
+pageTracker._trackPageview();
+</script>
+</BODY></HTML>
