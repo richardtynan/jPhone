@@ -56,9 +56,9 @@ public class LAPDm {
 	public void receiveMessageFromAbove(String message) {
 		AbisRslCommonHdr rm = new AbisRslCommonHdr(message);
 		if (rm.getDiscr() == Constants.ABIS_RSL_MDISC_RLL) {
-			this.rslms_rx_rll(rm.getData());
+			this.rslms_rx_rll(message);
 		} else if (rm.getDiscr() == Constants.ABIS_RSL_MDISC_COM_CHAN) {
-			this.rslms_rx_com_chan(rm.getData());
+			this.rslms_rx_com_chan(message);
 		} else
 			System.out.println("L2 unknown RSL " + message);
 	}
@@ -111,7 +111,6 @@ public class LAPDm {
 				Constants.PRIM_OP_REQUEST, msg.toString());
 		
 		this.mobile.getLayer1().receiveMessageFromLapdm(lm.toString());
-		
 	}
 
 }

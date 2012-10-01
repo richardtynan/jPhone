@@ -140,6 +140,18 @@ public class GSM48RR {
 				cch.toString());
 		this.mobile.getLapdm().receiveMessageFromAbove(common.toString());
 	}
+	
+	public void tx_rand_acc(int arfcn, int ccch_conf, int slots, int ra) {
+		ChanRqdMessage crm = new ChanRqdMessage(Constants.RSL_IE_REQ_REFERENCE,
+				ra, ccch_conf, slots,
+				Constants.RSL_IE_ACCESS_DELAY, 0, Constants.RSL_IE_MS_POWER, 5);
+		AbisRslCChanHdr cch = new AbisRslCChanHdr(Constants.RSL_IE_CHAN_NR,
+				Constants.RSL_CHAN_RACH, crm.toString());
+		AbisRslCommonHdr common = new AbisRslCommonHdr(
+				Constants.ABIS_RSL_MDISC_COM_CHAN, Constants.RSL_MT_CHAN_RQD,
+				cch.toString());
+		this.mobile.getLapdm().receiveMessageFromAbove(common.toString());
+	}
 
 	public int getSlots(boolean first, int tx_int, int ccch_conf) {
 		if (first) {
