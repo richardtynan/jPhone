@@ -45,12 +45,11 @@ public class Mobile {
 	private GSM48MM gsm48mm;
 
 	private GUI gui;
-
-	// todo logging
+	private Logger logger;
 	
 	private int state;
 
-	public Mobile(String name, String serialPort, String binFile, long timeout) {
+	public Mobile(String name, String serialPort, String binFile, long timeout, String logDir) {
 		this.ms = new MobileStation(name);
 
 		this.sf = new SerialForwarder(this, serialPort);
@@ -64,6 +63,7 @@ public class Mobile {
 		this.gsm48mm = new GSM48MM(this);
 
 		this.gui = new GUI(this);
+		this.logger = new Logger(logDir);
 		
 		this.state = Constants.MOBILE_IDLE;
 	}
@@ -78,14 +78,17 @@ public class Mobile {
 	}
 
 	public void receiveMessageFromPhone(String message) {
+		this.logger.logMessageFromPhone(message);
 		this.gui.receiveMessageFromPhone(message);
 	}
 
 	public void receiveMessage(String message) {
+		this.logger.logReceiveMessage(message);
 		this.gui.receiveMessage(message);
 	}
 
 	public void sendMessage(String message) {
+		this.logger.logSendMessage(message);
 		this.gui.sendMessage(message);
 	}
 

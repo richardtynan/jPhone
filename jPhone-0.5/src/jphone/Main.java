@@ -25,7 +25,7 @@ public class Main {
 	public static void main(String[] args) {
 
 		Mobile mobile = new Mobile("1", "/dev/ttyUSB0",
-				"lib/layer1.compalram.bin", 500);
+				"lib/layer1.compalram.bin", 500, "log/");
 
 		mobile.init();
 
