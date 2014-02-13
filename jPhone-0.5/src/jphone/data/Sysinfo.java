@@ -739,4 +739,29 @@ public class Sysinfo implements Comparable<Sysinfo> {
 	public void setHopping(int index, int value) {
 		this.hopping[index] = value;
 	}
+
+	/*
+	 * Calculate C1
+	 * http://www.ehanworld.com/GSM/GSM.html
+	 */
+	private int calculate_c1() {
+	    // maximum RF output power of the MS, usually 33dBm for a handheld
+	    // GSM900 and 30dBm for a handheld GSM1800 MS
+	    int p = 30;
+
+	    // TODO: at the moment rx_level is used to calculate a, but the
+	    // average rx_level over 3 to 5 seconds should be used.
+	    int a = Integer.parseInt(this.getProperty("rx_level")) - Integer.parseInt(this.getProperty("rxlev_acc_min"));
+	    int b = Integer.parseInt(this.getProperty("ms_txpwr_max_cch")) - p;
+
+	    return a - Math.max(b, 0);
+	}
+
+	/*
+	 * Calculate C2
+	 * http://www.ehanworld.com/GSM/GSM.html
+	 */
+	//private int calculate_c2() {
+	//    
+	//}
 }
