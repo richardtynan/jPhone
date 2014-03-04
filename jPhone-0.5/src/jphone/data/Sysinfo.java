@@ -710,14 +710,96 @@ public class Sysinfo implements Comparable<Sysinfo> {
 				+ rest);
 	}
 
-	public void decode_sysinfo3_rest(String rest) {
-		System.out.println("Unimplemented - gsm48_rr - si3 process rest "
-				+ rest);
-	}
+        public void decode_sysinfo3_rest(String rest) {
+
+            MessageAsBits bits = new MessageAsBits(rest);
+
+            // Optional Selection Parameters
+            if (bits.getBitHigh() == 'H') {
+                System.out.println("hi");
+                this.setProperty("sp", 1 + "");
+                this.setProperty("sp_cbq", bits.getUint(1) + "");
+                this.setProperty("sp_cro", bits.getUint(6) + "");
+                this.setProperty("sp_to", bits.getUint(3) + "");
+                this.setProperty("sp_pt", bits.getUint(5) + "");
+            } else {
+                this.setProperty("sp", 0 + "");
+            }
+
+            // Optional Power Offset
+            if (bits.getBitHigh() == 'H') {
+                this.setProperty("po", 1 + "");
+                this.setProperty("po_value", bits.getUint(2) + "");
+            } else {
+                this.setProperty("po", 0 + "");
+            }
+
+            // System Onformation 2ter Indicator
+            if (bits.getBitHigh() == 'H') {
+                this.setProperty("si2ter_ind", 1 + "");
+            } else {
+                this.setProperty("si2ter_ind", 0 + "");
+            }
+
+            // Early Classark Sending Control
+            if (bits.getBitHigh() == 'H') {
+                this.setProperty("ecsm", 1 + "");
+            } else {
+                this.setProperty("ecsm", 0 + "");
+            }
+
+            // Scheduling if and where
+            if (bits.getBitHigh() == 'H') {
+                this.setProperty("sched", 1 + "");
+                this.setProperty("sched_where", bits.getUint(3) + "");
+            } else {
+                this.setProperty("sched", 0 + "");
+            }
+
+            // GPRS Indicator
+            if (bits.getBitHigh() == 'H') {
+                this.setProperty("gprs", 1 + "");
+                this.setProperty("gprs_ra_colour", bits.getUint(3) + "");
+                this.setProperty("gprs_si13_pos", bits.getUint(1) + "");
+            } else {
+                this.setProperty("gprs", 0 + "");
+            }
+
+        }
 
 	public void decode_sysinfo4_rest(String rest) {
-		System.out.println("Unimplemented - gsm48_rr - si4 process rest "
-				+ rest);
+
+            MessageAsBits bits = new MessageAsBits(rest);
+
+            // Optional Selection Parameters
+            if (bits.getBitHigh() == 'H') {
+                System.out.println("hi");
+                this.setProperty("sp", 1 + "");
+                this.setProperty("sp_cbq", bits.getUint(1) + "");
+                this.setProperty("sp_cro", bits.getUint(6) + "");
+                this.setProperty("sp_to", bits.getUint(3) + "");
+                this.setProperty("sp_pt", bits.getUint(5) + "");
+            } else {
+                this.setProperty("sp", 0 + "");
+            }
+
+            // Optional Power Offset
+            if (bits.getBitHigh() == 'H') {
+                this.setProperty("po", 1 + "");
+                this.setProperty("po_value", bits.getUint(2) + "");
+            } else {
+                this.setProperty("po", 0 + "");
+            }
+
+            // GPRS Indicator
+            if (bits.getBitHigh() == 'H') {
+                this.setProperty("gprs", 1 + "");
+                this.setProperty("gprs_ra_colour", bits.getUint(3) + "");
+                this.setProperty("gprs_si13_pos", bits.getUint(1) + "");
+            } else {
+                this.setProperty("gprs", 0 + "");
+            }
+
 	}
 
 	public String getArfcn() {
@@ -747,21 +829,12 @@ public class Sysinfo implements Comparable<Sysinfo> {
 	private int calculate_c1() {
 	    // maximum RF output power of the MS, usually 33dBm for a handheld
 	    // GSM900 and 30dBm for a handheld GSM1800 MS
+	    // TODO: use a more accurate value by looking at power classes
 	    int p = 30;
 
-	    // TODO: at the moment rx_level is used to calculate a, but the
-	    // average rx_level over 3 to 5 seconds should be used.
 	    int a = Integer.parseInt(this.getProperty("rx_level")) - Integer.parseInt(this.getProperty("rxlev_acc_min"));
 	    int b = Integer.parseInt(this.getProperty("ms_txpwr_max_cch")) - p;
 
 	    return a - Math.max(b, 0);
 	}
-
-	/*
-	 * Calculate C2
-	 * http://www.ehanworld.com/GSM/GSM.html
-	 */
-	//private int calculate_c2() {
-	//    
-	//}
 }
