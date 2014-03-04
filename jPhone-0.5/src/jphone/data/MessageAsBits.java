@@ -38,7 +38,7 @@ public class MessageAsBits {
             ret = 'L';
         }
 
-        pos++;
+        pos += 2;
         return ret;
 
     }
