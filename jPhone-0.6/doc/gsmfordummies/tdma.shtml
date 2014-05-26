@@ -1,0 +1,325 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML>
+
+<HEAD>
+<TITLE>TDMA</TITLE>
+
+<META name="keywords" content="TDMA, time slot, data rate, GSM, normal burst, frequency correction, synchronization, access, frame, superframe, multiframe, hyperframe, traffic channel, control channel">
+<META name="description" content="A tutorial about Time Division Multiple Access as used in GSM.">
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20814942-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</HEAD>
+
+<BODY>
+
+<a name = "top">
+
+
+
+<br><br>
+
+<center>
+
+<h1>Time Division Multiple Access (TDMA)</h1>
+
+<font size = "2">
+
+<a href = "../tdma/tdma.shtml#intro">Introduction</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml#time_slots">Time Slots</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml#data_rates">Data Rates</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml#burst">Burst Structure</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml#normalburst">Normal Burst</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml#fburst">Frequency Correction Burst</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml#sburst">Synchronization Burst</a>
+
+<br>
+
+<a href = "../tdma/tdma.shtml#aburst">Access Burst</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml#throughput">Data Throughput</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml#hierarchy">Frame Structure</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml#tdma_frame">TDMA Frame</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml#multiframe">Multiframes</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml#superframe">Superframes</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml#hyperframe">Hyperframes</a>
+&nbsp;&nbsp;&nbsp;
+
+
+</font>
+
+
+<br><br>
+<a href = "http://www.gsmfordummies.com/index.html">Home</a>
+
+<hr width=100% size=5 noshade>
+<br><br>
+
+</center>
+
+<a name = "intro">
+<center><h1>Time Division Multiple Access</h1></center></a><center><h2>Introduction</h2></center>
+
+
+GSM uses Time Division Multiple Acces (TDMA) as its access scheme. This is how the MS interfaces with the network. TDMA is the protocol used on the Air (Um) Link. GSM uses Gaussian Minimum-Shift Keying (GMSK) as its modulation methos.<br><br>Time Division means that the frequency is divided up into blocks of time and only certain <i>logical channels</i> are transmitted at certain times. Logical channels will be introduced in the next lesson.The time divisions in TDMA are known as <b>Time Slots</b>. <br><br>
+
+<br>
+<hr width=100%>
+<br>
+
+<a name="time_slots"></a><Center><h2>Time Slots</h2></center>A frequency is divided up into 8 time slots, numbered 0 to 7.<br><br><center><img src = "images/timeslots.jpg"><h3>Time Slots</h3></center><br><br><br><br>On a side note, also remember that GSM carrier frequencies are separated by 200kHz and that GSM operates in duplex. A channel number assigned to a pair of frequencies, one uplink and one downlink, is known as an Absolute Radio Frequency Channel Number (ARFCN). For a review of the ARFCN go to the <a href = "../intro/intro.shtml">Introduction to GSM Tutorial</a>.<br><br>Each time slot lasts 576.9 &micro;s. A time slot is the basic radio resource used to facilitate communication between the MS and the BTS.<br><br><center><img src = "images/timeslots2.jpg"><h3>Time Slot Duration</h3></center><br><br>
+
+
+<font size = "2"> <a href = "#top">[Back to Top]</a></font>
+
+<br>
+<hr width=100%>
+<br>
+
+<a name="data_rates"></a><center><h2>Data Rates</h2></center>As stated earlier, GSM uses Gaussian Minimum-Shift Keying (GMSK) as its modulation method. GMSK provides a modulation rate of 270.833 kilobits per second (kb/s).<br><br>At that rate, a maximum of 156.25 bits can be transmitted in each time slot (576.9 &micro;s).<br><br>Math:<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;270.833 kb/s &#215; 1000 = 270,833 bits/sec &nbsp;&nbsp (Converting from kilobits to bits)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;270,833 b/sec &#247; 1,000,000 = .207833 b/&micro;s &nbsp;&nbsp (Calculating bits per miscrosecond) <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.207833 b/&micro;s &#215; 576.9 &micro;s = 156.25 bits &nbsp;&nbsp (Calculating number of bits per time slot)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;So, 156.25 bits can be transmitted in a single time slot<br><br><center><img src = "images/bits_per_timeslot.jpg"><h3>Bits per Time Slot</h3></center><br><br>
+
+
+<font size = "2"> <a href = "#top">[Back to Top]</a></font>
+
+<br>
+<hr width=100%>
+<br>
+
+<a name="burst"></a><center><h2>Data Burst</h2></center>The data transmitted during a single time slot is known as a burst. Each burst allows 8.25 bits for <i>guard time</i> within a time slot. This is to prevent bursts from overlapping and interfering with transmissions in other time slots. Subtracting this from the 156.25 bits, there are 148 bits usable for each burst.<br><br>There are four main types of bursts in TDMA:<br><br><b><a href="#normalburst">Normal Burst (NB)</a><br><a href = "#fburst">Frequency Correction Burst (FB)</a><br><a href = "#sburst">Synchronization Burst (SB)</a><br><a href = "#aburst">Access Burst (AB)</a></b><br><br>
+
+
+<br>
+<hr width=100%>
+<br>
+
+<a name="normalburst"></a><h2>Normal Burst</h2>The data transmitted during a single time slot is known as a burst. Each burst allows 8.25 bits for <i>guard time</i>. This is to prevent bursts from overlapping and interfering with transmissions in other time slots.<br><br>Out of 156.25, this leaves 148 bits usable for each burst.<br><br>Here is the structure of a normal burst:<br><br><center><img src = "images/burst.jpg"><h3>Burst</h3></center><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Tail Bits</b> - Each burst leaves 3 bits on each end in which no data is transmitted. This is designed to compensate for the time it takes for the power to rise up to its peak during a transmission. The bits at the end compensate for the powering down at the end of the transmission.<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Data Bits</b> - There are two data payloads of 57 bits each.<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Stealing Flags</b> - Indicates whether the burst is being used for voice/data (set to "0") or if the burst is being "stolen" by the <i>FACCH</i> to be used for singalling (set to "1").<font size="2"> *The FACCH is discussed in the <a href = "../tdma/logical.shtml">Logical Channels Tutorial </a></font><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Training Sequence</b> - The training sequence bits are used to overcome multi-path fading and propagation effects through a method called <i>equalization</i>.<br><br><font size = "2">*Note: 3GPP TS 45.001 Standard does not describe stealing bits, and instead allows for two 58-bit data payloads in a burst. However, it is common practice in GSM networks to use 57-bit payloads and stealing bits.</font><br><br><br><br>This diagram illustrates a single burst inside a time slot. Remember that 8.25 bits are not used in order to allow for a guard time.
+<br><br><center><img src = "images/burst_in_timeslot.jpg"><h3>Burst within a Time Slot</h3></center><br><br>Since each burst has two 57-bit data segments, we can see that a single burst has a data payload of 114 bits.<br><br>
+
+
+<font size = "2"> <a href = "#top">[Back to Top]</a></font>
+
+<br>
+<hr width=100%>
+<br>
+
+<a name="fburst"></a><h2>Frequency Correction Burst</h2>This burst is used for frequency synchronization of the mobile station. It is an unmodulated carrier that shifts in frequency. It has the same guard time as a normal bit (8.25 bits). The broadcast of the FB usually occurs on the logical channel <i>FCCH</i>. <br><font size="2"> *The FCCH is discussed in the <a href = "../tdma/logical.shtml">Logical Channels Tutorial </a></font><br><br><center><img src = "images/fburst.jpg"><h3>Frequency Correction Burst</h3></center><br><br>
+
+<font size = "2"> <a href = "#top">[Back to Top]</a></font>
+
+<br>
+<hr width=100%>
+<br>
+
+<a name="sburst"></a><h2>Synchronization Burst</h2>This burst is used for time synchronization of the mobile. The data payload carries the TDMA <i>Frame Number (FN)</i> and the <i>Base Station Identity Code (BSIC)</i>. It is broadcast with the frequency correction burst. The Synchronization Burst is broadcast on the <i>Synchronization Channel (SCH)</i>. <br><font size="2"> *The SCH is discussed in the <a href = "../tdma/logical.shtml">Logical Channels Tutorial </a></font><br><br><center><img src = "images/sburst.jpg"><h3>Synchronization Burst</h3></center><br><br>
+
+
+<font size = "2"> <a href = "#top">[Back to Top]</a></font>
+
+<br>
+<hr width=100%>
+<br>
+
+<a name="aburst"></a><h2>Access Burst</h2>This burst is used the by mobile station for random access. It has a much longer guard period (68.25 bits compared to the 8.25 bits in a normal burst). It is designed to compensate for the unknown distance of the mobile station from the tower, when the MS wants access to a new BTS, it will not know the correct <i>Timing Advance</i>. <br><font size="2"> *The RACH is discussed in the <a href = "../tdma/logical.shtml">Logical Channels Tutorial </a></font><br><br><center><img src = "images/aburst.jpg"><h3>Access Burst</h3></center><br><br>
+
+
+<font size = "2"> <a href = "#top">[Back to Top]</a></font>
+
+<br>
+<hr width=100%>
+<br>
+
+<a name="throughput"></a><center><h2>Calculating the Data Throughput</h2></center>Since each burst has two 57-bit data segments, we can see that a single burst has a data payload of 114 bits.<br><br>Each burst lasts 576.9 &micro;s, so we can calculate the theoretical bit rate of a single time slot:<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;114 bits &#247; 576.9 &micro;s = .1976 bits/&micro;s &nbsp;&nbsp (Calculating bits per &micro;s)<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.1976 bits/&micro;s &#215; 1,000,000 = 197,607 bits/sec &nbsp;nbsp; (Converting &micro;s to sec)<br><br>Since there are 8 time slots per carrier frequency, each time slot would only get 1/8 of this bit rate, so...<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;197,607 bits &#247; 8 = 24,700 bits &nbsp;&nbsp; (Calculating bit rate for one of eight time slots.)<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;24,700 bits &#247; 1000 = 24.7 kbits/sec &nbsp;&nbsp (Converting bits to kilobits)<br><br>So, using GMSK modulation there is a maximum bit rate of 24.7 kb/s for a single time slot. Note that this bit rate does not account for any error correction bits. Any bits used for error correction would have to be stolen from the 114-bit data payload of each burst.<br><br>
+
+
+<font size = "2"> <a href = "#top">[Back to Top]</a></font>
+
+<br>
+<hr width=100%>
+<br>
+
+<a name="hierarchy"></a><center><h2>TDMA Frame Structure & Hierarchy</h2></center><a name = "tdma_frame"><h3>TDMA Frame</h3>Each sequence of 8 time slots is known as a TDMA frame. The duration of a TDMA frame is 4.615 milliseconds (ms) (576.9 &micro;s &#215; 8).<br><font size = "2">* Remember that a TDMA frame is 8 time slots and that no one resource will be given an entire TDMA frame, the resources must share them.</font><br><br><center><img src = "images/tdma_frame.jpg"><h3>A TDMA Frame</h3></center><br><br>
+
+
+<font size = "2"> <a href = "#top">[Back to Top]</a></font>
+
+<br>
+<hr width=100%>
+<br>
+
+<a name="multiframe"></a><h3>Multiframe</h3>A Multiframe is composed of multiple TDMA frames.<br><br>There are two types of multiframes:<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Control Channel Multiframes</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Traffic Channel Multiframes</b><br><br><font size = "2"> *Control Channels and Traffic Channels are explained in <a href = "../tdma/logical.shtml">Logical Channels Tutorial</a>.</font><br><br><b>Control Channel Multiframe</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;composed of 51 TDMA frames<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;duration = 235.4 ms<br><br><br><center><img src = "images/multiframe_cch.jpg"><h3>Control Channel Multiframe</h3></center><br><br><b>Traffic Channel Multiframe</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;composed of 26 TDMA frames<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;duration = 120 ms<br><br><br><center><img src = "images/multiframe_tch.jpg"><h3>Traffic Channel Multiframe</h3></center><br><br>Here is a diagram comparing the Control Channel multiframe and a traffic channel multiframe.<br><br><br><center><img src = "images/multiframes.jpg"><h3>Traffic Channel and Control Channel Multiframes</h3></center><br><br>The next diagram shows a Traffic Channel (TCH) Multiframe with TS2 (green) being allocated to a Mobile Station (MS). The red arrow indicates the sequence of transmission. The sequence starts in TDMA frame 0 at TS0, proceeds through all eight time slots, then starts again with TDMA frame 1.<br><br>In this example, the MS has been allocated a Traffic Channel in TS2. Therefore the MS will only transmit/receive during TS2 of each TDMA frame.<br><br><center><img src = "images/single_timeslot_tch_multiframe.jpg"><h3>Single Time Slot Allocated</h3></center><br><br>
+
+
+<font size = "2"> <a href = "#top">[Back to Top]</a></font>
+
+<br>
+<hr width=100%>
+<br>
+
+<a name="superframe"></a><h3>Superframe</h3>A Superframe is composed of multiple Multiframes.<br><br>Again, there is a superframe for Control Channels and one for Traffic Channels.<br><br><b>Control Channel Superframe</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;composed of 26 Control Channel (CCH) multiframes (each CCH multiframe has 51 TDMA frames)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;duration = 6.12 seconds<br><br><br><b>Traffic Channel Superframe</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;composed of 51 Traffic Channel (TCH) multiframes (each TCH) multiframe has 26 TDMA frames)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;duration = 6.12 seconds<br><br>Each superframe, whether it is a CCH or TCH frame, consists of 1326 TDMA frames (51 * 26)<br><font size = "2">*Note: The CCH and TCH frame sequences will synchronize every superframe.</font><br><br>
+
+
+<font size = "2"> <a href = "#top">[Back to Top]</a></font>
+
+<br>
+<hr width=100%>
+<br>
+
+<a name="hyperframe"></a><h3>Hyperframe</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A hyperframe is composed of 2048 superframes.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;duration = 3h 28m 53s 76ms (12,533.76 seconds)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;consists of 2,715,648 TDMA frames<br><br>Each TDMA frame is numbered according to its sequence within the hyperframe, starting from 0 and ending at 2,715,647.<br><br>The TDMA frame number within a hyperframe is abbreviated FN. The FN is one of the variables used in GSM encryption algorithms.<br><br><br><br>The following diagram shows the relationship between all of the various time segments introduced in this tutorial.<br><br><center><img src = "images/allframes.jpg"><h3>Relationship of All Time Segments</h3></center><br><br><br><br>
+
+<center>
+<br>
+
+<hr width=100% size=5 noshade>
+
+<font size = "2">
+
+<a href = "../tdma/tdma.shtml#intro">Introduction</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml#time_slots">Time Slots</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml#data_rates">Data Rates</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml#burst">Burst Structure</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml#normalburst">Normal Burst</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml#fburst">Frequency Correction Burst</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml#sburst">Synchronization Burst</a>
+
+<br>
+
+<a href = "../tdma/tdma.shtml#aburst">Access Burst</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml#throughput">Data Throughput</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml#hierarchy">Frame Structure</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml#tdma_frame">TDMA Frame</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml#multiframe">Multiframes</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml#superframe">Superframes</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml#hyperframe">Hyperframes</a>
+&nbsp;&nbsp;&nbsp;
+
+
+</font>
+
+
+<br><br>
+
+<font size = "2">
+
+<a href = "../intro/intro.shtml">Introduction</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../architecture/arch.shtml">Architecture</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml">TDMA</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/logical.shtml">Logical Channels</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../encryption/encryption.shtml">Authentication & Encryption</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../timing/timing.shtml">Timing Advances</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../encoding/encoding.shtml">Speech Encoding</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../gsmevents/events.shtml">GSM Events</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../air/radiolink.shtml">Cell Selection/Reselection</a>
+
+<br>
+
+<a href = "../updates.shtml">Updates</a>
+&nbsp;&nbsp;&nbsp;
+
+<!--<a href = "../forum/index.php" target = "BB">Bulletin Board</a>
+&nbsp;&nbsp;&nbsp;-->
+
+<a href = "../sitemap.shtml">Sitemap</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../contact/contact.shtml">Contact Me</a>
+
+
+
+
+
+
+</font>
+
+<br><br>
+<a href = "http://www.gsmfordummies.com/index.html">Home</a>
+
+</center>
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-6152103-1");
+pageTracker._trackPageview();
+</script>
+
+</BODY></HTML>

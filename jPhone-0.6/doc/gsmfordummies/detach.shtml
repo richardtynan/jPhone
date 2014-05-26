@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>IMSI Detach</TITLE>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20814942-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</HEAD>
+
+
+<BODY>
+
+<center>
+
+<h1>GSM Events</h1>
+
+<font size = "2">
+
+<a href = "../gsmevents/attach.shtml">IMSI Attach</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../gsmevents/detach.shtml">IMSI Detach</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../gsmevents/location_update.shtml">Location Update</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../gsmevents/mobile_originated.shtml">Mobile-Originated Call</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../gsmevents/mobile_terminated.shtml">Mobile-Terminated Call</a>
+&nbsp;&nbsp;&nbsp;
+
+
+</font>
+<br><br>
+
+<a href = "http://www.gsmfordummies.com/index.html">Home</a>
+
+
+<hr width=100% size=5 noshade>
+<br><br>
+
+</center>
+
+
+<center><h1>IMSI Detach</h2></center><h3>A MS will perform an IMSI Detach when it powers off. An IMSI Detach message informs the network that the MS is no longer on the network and should not be paged. This allows the network to process a call rejection faster, instead of waiting for paging requests to not be answered. In most networks, the MSC/VLR will initiate an IMSI Detach if the MS has not been active on the network for a specified period of time.</h3><table border = "0" cellspacing = "10"><tr><td colspan = "2" bgcolor = "gray"></td></tr><tr><td colspan = "2"><h1><center>Channel Request and IMSI Detach Request</center></h1></td></tr><tr>	<td align = "left">	1. The MS requests a channel in the same manner it does in the Location Update and IMSI Attach. The MS sends a Channel Request message on the RACH. The BSS replies on the AGCH and assigns the MS a SDCCH.	<br><br>	2. The MS sends an <i>IMSI Detach Indication (IMSI_DET_IND)</i> message to the BSS on the SDCCH. The BSS forwards the message to the MSC/VLR	<BR><BR>	<font size = "2">*At this point, the network would require the MS to authenticate prior to continuing. See the <a href="../encryption/encryption.html" target = "encryption">Authentication and Encryption Tutorial</a> for more information.</font>	</td>	<td bgcolor = "gray"><center><img src = "images/IMSI Detach 1.gif"></center></td></tr><tr><td colspan = "2" bgcolor = "gray"></td></tr><tr><td colspan = "2"><h1><center>IMSI Detach Request</center></h1></td></tr><tr>	<td>	3. The MSC/VLR sends a <i>Location Cancel Request</i> to the HLR.	<br><br>	4. The HLR marks the IMSI as detached and removes any pointers for the IMSI from its registry. It then sends a <i>Location Cancel Acknowledgemnt</i> message to the MSC/VLR.	<br><br>	</td>	<td bgcolor = "gray"><center><img src = "images/IMSI Detach 2.gif"></center></td></tr><tr><td colspan = "2" bgcolor = "gray"></td></tr></table>
+
+<BR><BR>
+
+<center>
+<br>
+
+<hr width=100% size=5 noshade>
+
+<font size = "2">
+
+<a href = "../gsmevents/attach.shtml">IMSI Attach</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../gsmevents/detach.shtml">IMSI Detach</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../gsmevents/location_update.shtml">Location Update</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../gsmevents/mobile_originated.shtml">Mobile-Originated Call</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../gsmevents/mobile_terminated.shtml">Mobile-Terminated Call</a>
+&nbsp;&nbsp;&nbsp;
+
+
+</font>
+
+
+<br><br>
+
+<font size = "2">
+
+<a href = "../intro/intro.shtml">Introduction</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../architecture/arch.shtml">Architecture</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml">TDMA</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/logical.shtml">Logical Channels</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../encryption/encryption.shtml">Authentication & Encryption</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../timing/timing.shtml">Timing Advances</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../encoding/encoding.shtml">Speech Encoding</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../gsmevents/events.shtml">GSM Events</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../air/radiolink.shtml">Cell Selection/Reselection</a>
+
+<br>
+
+<a href = "../updates.shtml">Updates</a>
+&nbsp;&nbsp;&nbsp;
+
+<!--<a href = "../forum/index.php" target = "BB">Bulletin Board</a>
+&nbsp;&nbsp;&nbsp;-->
+
+<a href = "../sitemap.shtml">Sitemap</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../contact/contact.shtml">Contact Me</a>
+
+
+
+
+
+
+</font>
+
+<br><br>
+
+<a href = "http://www.gsmfordummies.com/index.html">Home</a>
+
+
+</center>
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-6152103-1");
+pageTracker._trackPageview();
+</script>
+
+</BODY></HTML>

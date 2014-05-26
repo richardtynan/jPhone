@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML>
+
+<HEAD>
+
+<TITLE>Updates</TITLE>
+
+</HEAD>
+
+<body>
+
+<center>
+
+<h1>Updates</h1>
+
+<font size = "2">
+
+<a href = "../intro/intro.shtml">Introduction</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../architecture/arch.shtml">Architecture</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml">TDMA</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/logical.shtml">Logical Channels</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../encryption/encryption.shtml">Authentication & Encryption</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../timing/timing.shtml">Timing Advances</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../encoding/encoding.shtml">Speech Encoding</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../gsmevents/events.shtml">GSM Events</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../air/radiolink.shtml">Cell Selection/Reselection</a>
+
+<br>
+
+<a href = "../updates.shtml">Updates</a>
+&nbsp;&nbsp;&nbsp;
+
+<!--<a href = "../forum/index.php" target = "BB">Bulletin Board</a>
+&nbsp;&nbsp;&nbsp;-->
+
+<a href = "../sitemap.shtml">Sitemap</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../contact/contact.shtml">Contact Me</a>
+
+
+
+
+
+
+</font>
+
+<br><br>
+<a href = "http://www.gsmfordummies.com/index.html">Home</a>
+
+<hr width=100% size=5 noshade>
+<br><br>
+
+</center>
+
+<center><h1>GSM For Dummies</h1>
+<h2>Updates</h2></center>
+
+
+<h4>This page will list updates and corrections I have made to the site. It will go in chronological order from most recent to oldest.</h4>
+
+<a href = "http://gsmfordummies.com/index.html">Home Page</a>
+
+<br><br><br><br>
+
+<table border = "10">
+
+<tr>
+<th>Date</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+
+
+<tr>
+<td>Feb 6, 2011</td>
+<td>Update</td>
+<td>Added a section on <a href = "../air/radiolink.shtml"> cell selection and reselection</a> and <a href = "../air/decibels.shtml">decibels</a>.</td>
+</tr>
+
+
+<tr>
+<td>Jan 12, 2011</td>
+<td>Update</td>
+<td>GSM For Dummies is back online after being offline for a year.</td>
+</tr>
+
+
+<tr>
+<td>Nov 28, 2008</td>
+<td>Redesign</td>
+<td>Changed all the static pictures in <a href = "../gsmevents/events.shtml">GSM Events</a> to animations.</a></td>
+</tr>
+
+
+<tr>
+<td>Nov 10, 2008</td>
+<td>Update</td>
+<td>Updated the contact page to allow comments to be submitted without requiring an email address.</a></td>
+</tr>
+
+<tr>
+<td>Nov 1, 2008</td>
+<td>Redesign</td>
+<td>I redesigned the main page and the menus.</a></td>
+</tr>
+
+
+
+<tr>
+<td>Jul 6, 2008</td>
+<td>Update</td>
+<td>Added a new section about <a href = "encoding/encoding.shtml">Speech Encoding, Block Coding, Reordering, Partioning, and Interleaving</a></td>
+</tr>
+
+<tr>
+<td>Jan 20, 2008</td>
+<td>Update</td>
+<td>Added a new section about <a href = "tdma/logical.shtml#hopping">Frequency Hopping</a></td>
+</tr>
+
+
+<tr>
+<td>Jan 15, 2008</td>
+<td>Update</td>
+<td>Added a new section about <a href = "timing/timing.shtml">Timing Advances</a></td>
+</tr>
+
+<tr>
+<td>Jan 12, 2008</td>
+<td>Initial</td>
+<td>GSM For Dummies goes online for the first time!</td>
+</tr>
+
+</table>
+
+<center>
+<br>
+
+<hr width=100% size=5 noshade>
+
+<font size = "2">
+
+<a href = "../intro/intro.shtml">Introduction</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../architecture/arch.shtml">Architecture</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml">TDMA</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/logical.shtml">Logical Channels</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../encryption/encryption.shtml">Authentication & Encryption</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../timing/timing.shtml">Timing Advances</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../encoding/encoding.shtml">Speech Encoding</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../gsmevents/events.shtml">GSM Events</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../air/radiolink.shtml">Cell Selection/Reselection</a>
+
+<br>
+
+<a href = "../updates.shtml">Updates</a>
+&nbsp;&nbsp;&nbsp;
+
+<!--<a href = "../forum/index.php" target = "BB">Bulletin Board</a>
+&nbsp;&nbsp;&nbsp;-->
+
+<a href = "../sitemap.shtml">Sitemap</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../contact/contact.shtml">Contact Me</a>
+
+
+
+
+
+
+</font>
+
+<br><br>
+<a href = "http://www.gsmfordummies.com/index.html">Home</a>
+
+</center>
+
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-6152103-1");
+pageTracker._trackPageview();
+</script>
+
+</body>
+
+</html>

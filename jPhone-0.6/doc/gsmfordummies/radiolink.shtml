@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML>
+<HEAD>
+
+
+
+<br><br>
+
+<TITLE>Cell Selection and Reselection</TITLE>
+
+<META name="keywords" content="RSSI, RXLEV, RXQUAL, C1, C2, CRO, Cell Reselection Offset, cell selection, cell reselection, cell reselection hysteresis">
+
+<META name="description" content="A GSM tutorial that describes the paramaters for cell selection and reselction.">
+
+</HEAD>
+
+<BODY>
+<a name="top">
+
+<center>
+
+<h1>Cell Selection and Reselection</h1>
+
+<font size = "2">
+
+<a href = "../air/radiolink.shtml#sig">Signal Strength</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../air/radiolink.shtml#rxqual">RXQUAL</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../air/radiolink.shtml#selrel">Cell Selection and Reselection</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../air/radiolink.shtml#c1">C1</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../air/radiolink.shtml#c2">C2</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../air/radiolink.shtml#cro">Cell Reselection Offset</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../air/radiolink.shtml#crh">Cell Reselection Hysteresis</a>
+&nbsp;&nbsp;&nbsp;
+
+
+<a href = "../air/radiolink.shtml#cba">Cell Bar Access</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../air/radiolink.shtml#cbq">Cell Bar Qualifier</a>
+&nbsp;&nbsp;&nbsp;
+
+
+
+
+
+</font>
+
+
+<br><br>
+<a href = "http://www.gsmfordummies.com/index.html">Home</a>
+
+<hr width=100% size=5 noshade>
+<br><br>
+
+</center>
+
+Note: This tutorial is intended for people that have a good basic understanding of GSM fundamentals. It may be necessary to review Introduction to GSM and Network Architecture before reading this tutorial.
+
+
+<p>There are many factors involved in maintaining the radio link (Um interface) between the <a href="../architecture/arch.shtml#ms" target="MS">Mobile Station (MS)</a> and the <a href="../architecture/arch.shtml#bts" target="bts">Base Transceiver Station (BTS)</a>. As the MS moves throughout the network
+the signal strength of the BTS will increase and decrease and the MS will have to continuously monitor the signal strengths of nearby towers and update which BTS's it camps on. This page covers all of the parameters that the MS and network will use in order to ensure the the MS chooses the strongest tower to monitor and other network considerations.</p>
+<p>&nbsp;</p>
+
+<hr width=100%>
+<br>
+
+
+<a name="sig"></a>
+<h2>Signal Strength</h2>
+<p>The first and arguably most important consideration in radio link management is signal strength. In GSM (and most other RF communications) the standard measure of signal strength is dBm (<a href="decibels.shtml" target="decibels">decibels</a> in milliwatts). The term <em>received signal strength indicator</em> (RSSI) is often used but in GSM the term <em>received-signal level </em>(RXLEV) is preferred. The distinction is that the term RSSI was generally used on analog networks and RXLEV is used on digital networks. On this website RSSI will be used for general reference to signal strength and RXLEV for the actual value that is passed over the network. </p>
+<h3>RXLEV</h3>
+<p>RXLEV is a number from 0 to 63 that corresponds to a dBm value range. 0 represents the weakest signal and 63 the strongest.</p>
+<p><img src="images/rxlev.gif"></p>
+<p>RSSI below -110 dBm are generally considered unreadable in GSM. RSSI in the area of -50 dBm are rarely seen and would indicate that the MS is right next to the BTS. The main factor that affects RSSI is distance from the tower. However, other factors such as terrain, elevation, and large objects such as buildings can dampen signal strength.</p>
+<br>
+<hr width=75%>
+<br>
+
+<a name = "rxqual"></a>
+<h3>RXQUAL</h3>
+<p>Although a strong RSSI is desirable, it does not guarantee a quality signal. RXQUAL is a value that represents the quality of the received signal. The MS determines the Bit Error Rate (BER) of the signal and reports it back to the network. The BER is simply a percentage of the number of bits it receives that did not pass error checking. The bits may have been garbled along the RF path or lost due to fading or interference. The higher the BER the lower the signal quality. RXQUAL is given as a number from 0 to 7 and represents a percentage range of BER.</p>
+<p><img src="images/rxqual.gif"></p>
+<p>&nbsp;</p>
+<hr width=75%>
+<p>&nbsp;</p>
+<a name = "selrel"></a>
+<h3>Cell Selection and Reselection</h3>
+<p>Cell selection refers to the <em>initial</em> registration that a MS will make with a network. This normally only occurs when the phone powers up or when the MS roams from one network to another.</p>
+<p>Cell reselection refers to the process of a MS choosing a new cell to monitor once it has already registered and is camped on a cell. It is important to distinguish that selection and reselection are done by the MS itself and not governed by the network. The network would only be responsible for this function when the MS is in a <a href="../tdma/logical.shtml#traffic_channels" target="tch">Traffic Channel (TCH)</a>. When the MS reselects a new cell it will not inform the network that it has done so unless that new cell is in a new <a href="../architecture/arch.shtml#vlr" target="vlr">Location Area (LA)</a>. </p>
+<p>There are many parameters involved in selection and reselection of a new cell. The MS must ensure it is getting the best signal and the network must ensure that the MS does not cause unneeded strain on the network by switching cells when unnecessary or undesired. </p>
+<p>&nbsp;</p>
+<a name = "c1"></a>
+<h4>C1</h4>
+<p>C1 is the  path-loss parameter that is used to determine the strongest cell for <em>selection</em>. The MS will calculate a C1 for each tower it can see and  select the cell tower with the highest C1. The C1 uses the following parameters for calculation:</p>
+<p><img src="images/C1_param.gif"></p>
+<p>&nbsp;</p>
+<p>The formula for calculating C1 is given as:<br>
+  C1 = (A) - Max(B,0) <br>
+where:<br>
+A = (RXLEV - RLAM)  <br>
+B = MS Transmit Power Max CCH -Max RF Output of MS</p>
+<p>At first this may seem complicated but if we examine the various parameters and how they affect the C1 score then it becomes more clear.</p>
+<p>A - This value is merely a dB value for the difference between what RSSI is required to select that cell and what signal strength the MS sees the tower at.  If the RLAM is -110dB and the MS sees the tower at -90dB then the value of A is 20dB. The higher the value of A the higher the C1 and the more attractive this tower will be to the MS. </p>
+<p>B - Just because a MS can receive a tower's signal does not mean that the MS has enough power to reach that tower. The tower tells the MS what maximum power level that the MS may use to transmit to that tower. If the phone is capable of transmitting at this power than there is no problem. However, what if the phone can not transmit at that power level? The signal from the MS may not have enough power to reach the tower. Any lack in transmitting power of the MS must be taken into account when calculating C1. B is essentially the value of this difference. Let's say a cell tower requires the MS to be able to transmit at a 30dB power level but this MS is only capable of transmitting at 26dB. In this case the value of B would be 4dB. This value is <em>subtracted</em> from the value of A which has the result of lowering the value of C1. If the MS is capable of transmitting at the required power or higher then B will be zero and no adjustments to C1 will be made.</p>
+<p>In summary, the two main factors in determining C1 are the strength of the received signal and the transmission power the MS is capable of. C1 alone is only used for cell <em>selection</em>. When a MS is already camped on a cell and it wants to move to another cell it will <em>reselect</em> it. Cell reselection uses a different criteria <strong>C2.</strong></p>
+<p>&nbsp;</p>
+<hr width=75%>
+<a name = "c2"></a>
+<p><strong>C2</strong></p>
+<p>C2 is the parameter used for <em>cell reselection</em>. Once a MS is camped on a cell it will continuously monitor the strength of neighbor cells. Every <a href="../tdma/logical.shtml#bcch" target="bcch">BCCH</a> sends out a <em>BCCH Allocation (BA) List</em>. This is a list of neighbor cells (ARFCNs) that the MS must monitor while camped on a particular cell. The MS will monitor these ARFCNs for signal strength and only reselect a cell that is on this list. The MS will calculate a C2 value for each cell on the BA list.  The cell tower with the highest C2 wins and the MS will move to that cell and camp on it. Keep in mind the C2 is calculated by the MS and the MS decides which cell tower to camp on. The cell that the MS camps on is known as the <em>serving cell</em>. As long as the losing cell and the gaining cell are both in the same <a href="../architecture/arch.shtml#vlr" target="arch">Location Area</a> the MS will not notify the network that is is selecting a new cell. The MS only needs to notify the network if it is reselecting the cell that is in a new location area in which case it will do a <a href="../gsmevents/location_update.shtml" target="loc update">location update</a>.</p>
+<p>The C2 is calculated using the following parameters:<br>
+<img src="images/C2_param.gif"></p>
+<p>The formula for calculating C2 is:</p>
+<p>C2 = C1 + CRO - (Temp_Offset * H)<br>
+
+</p>
+<p>H = 1 if the MS has been monitoring a particular cell for less than the <em>penalty time. </em><br>
+H = 0 if the MS has been monitoring the particular cell for longer than the penalty time.<br>
+H = 0 if the particular cell is the serving cell (the one the MS is currently camped on).
+
+</p>
+<p>Let's look at an example to see how the temporary offset works. The following chart shows two example cell towers and values for C1 and C2 parameters. The time progresses as the MS moves away from cell A and towards cell B.  For sake of simplicity, we are assuming that the MS can transmit at the max power allowed and that neither cell is using CRO.</p>
+<p><img src="images/C2_comp.gif"></p>
+<p>0 seconds - The MS is camped on cell A. The MS calculates the C2 value as 38. Since the RXLEV for cell B is not above the RLAM the C1 (and C2) are below 0. A MS will not select a cell with a C1 below 0 and it will not reselect a cell with a C2 below 0. </p>
+<p>10 seconds - The RXLEV for cell B meets the minimum threshold (RLAM). The MS starts a timer as soon as it puts it on its strongest neighbor list. The penalty time for cell B is 40 seconds, so for the first 40 seconds that cell B is on the strongest neighbor list it will apply the temporary offset to the C2 value. After including the offset, the C2 for cell B is -20 dBm.</p>
+<p>20 seconds - The C2 for cell A continues to drop as the C2 for cell B continues to rise. With a C2 of 25, cell A is still the most attractive.</p>
+<p>30 seconds - Cell A drops to a C2 of 21 and cell B has a C2 of -5.</p>
+<p>40 seconds - Cell A drops to a C2 of 18. Cell B rises to a C2 of 3. Notice here that if it were not for the temporary offset, the C2 for cell B would be at 23. At this point the MS would normally reselect cell B. However, due to the temporary offset, cell A is still the most attractive.</p>
+<p>50 seconds - At this point the penalty time for cell B has expired and the temporary offset is no longer applied. The C2 for cell B raises from 3 to 27. The C2 for cell B wins over the C2 for cell A and the MS reselects cell B.</p>
+<br>
+<p>The temporary offset would be used if the network wanted to discourage mobile stations from reselecting a cell as soon as the MS saw it. This is commonly found in pico-cells. This forces a MS to be in the area of the cell for a certain period before reselecting it. It prevents mobile stations that just happen to be passing by from reselecting the cell. In order to reselect the cell, the MS must be in the area for a certain period of time or be close enough that the RXLEV overcomes the negative offset value.</p>
+<a name = "cro"></a>
+<p><strong>Cell Reselection Offset (CRO)</strong> - CRO is a value from 0 to 63. Each step represents a 2 dBm step (0 to 126 dBm). This value is added to C1. A higher CRO value will make the cell tower more attractive to the MS.  The higher the CRO, the more attractive the cell will be. The network might assign a CRO value to a cell if the network wanted to encourage mobile stations to utilize that cell. The network might want to do this in order to reduce the load on other cells during times of high traffic volume or to force MS's to a certain band.</p>
+<p>&nbsp;</p>
+<p><strong>Neighbor List - </strong>The neighbor list is a list of the 6 strongest cells that the MS can see. The RXLEV for these cells is transmitted in a measurement report from the MS to the BTS on the SACCH whenever the MS has been allocated an SDCCH or a TCH. The BSC and MSC use these measurements to determine if the MS needs to move to a different cell. Whenever a cell is in an active SDCCH or TCH the network will always manage the handoff. The MS will only move from one cell to another by itself when it is in idle mode. </p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr width=75%>
+<p>&nbsp;</p>
+<a name = "crh"></a>
+<p><strong>Cell Reselection Hysteresis (CRH)</strong></p>
+<p>When a MS reselects a new cell it does not need to notify the network unless that new cell is in a different <a href="../architecture/arch.shtml#vlr" target="arch">Location Area</a>. When a MS moves into a new location area it must do a <a href="../gsmevents/location_update.shtml" target="loc update">location update</a> which generates signal messaging between the BTS, BSC, MSC, VLR, and HLR. If a MS is located along the border of two location areas then it will see cells in both location areas. A MS along the borderline might reselect a cell in one location area and then a few minutes later reselect a cell in the other location area and continuously bounce back and forth between location areas generating too much signaling overhead and putting strain on the network.</p>
+<p>In order to mitigate this problem the CRH is used. It is a value that is similar to the temporary offset value of C2. CRH is applied to C2 when the desired cell is in a different location area. This results in making the cell in this  different location area less desirable to the MS. The MS must move close enough to the new location area to overcome the offset thus ensuring the MS is truly close enough to the new location area to warrant a location update. Once the MS reselects the cell in the new location area it will perform a location update. The MS will then apply the CRH value to all cells it sees in the old location area which will make them less attractive to the MS and ensure the MS does not continually bounce back and forth between two location areas.</p>
+<p>&nbsp;</p>
+<hr width=75%>
+<p>&nbsp;</p>
+<a name = "cba"></a>
+<p><strong>Cell Bar Access (CBA)</strong></p>
+<p>Cell Bar Access is a single bit (0 or 1) value sent down on the BCCH. If CBA is set to 1 then MS's are not allowed to select that cell. If the value is set to 0 then MS's may select it. CBA would be used on umbrella cells in order to prevent MS's from selecting it. The umbrella cell would be reserved for when the network needs to manage high levels of traffic. This gives the network total control of access to the umbrella cell. </p>
+<a name = "cbq"></a>
+<p><strong>Cell Bar Qualifier (CBQ)</strong></p>
+<p>This value is similar to the CBA but it applies to <em>reselection</em>. A cell that has CBQ set to 1 does not allow MS's to reselect it. CBQ set to 0 allows normal access to that cell.</p>
+<p>&nbsp;</p>
+<center>
+<hr width=100% size=5 noshade>
+
+<font size = "2">
+
+<a href = "../air/radiolink.shtml#sig">Signal Strength</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../air/radiolink.shtml#rxqual">RXQUAL</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../air/radiolink.shtml#selrel">Cell Selection and Reselection</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../air/radiolink.shtml#c1">C1</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../air/radiolink.shtml#c2">C2</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../air/radiolink.shtml#cro">Cell Reselection Offset</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../air/radiolink.shtml#crh">Cell Reselection Hysteresis</a>
+&nbsp;&nbsp;&nbsp;
+
+
+<a href = "../air/radiolink.shtml#cba">Cell Bar Access</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../air/radiolink.shtml#cbq">Cell Bar Qualifier</a>
+&nbsp;&nbsp;&nbsp;
+
+
+
+
+
+</font>
+
+
+<br><br>
+
+<font size = "2">
+
+<a href = "../intro/intro.shtml">Introduction</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../architecture/arch.shtml">Architecture</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/tdma.shtml">TDMA</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../tdma/logical.shtml">Logical Channels</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../encryption/encryption.shtml">Authentication & Encryption</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../timing/timing.shtml">Timing Advances</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../encoding/encoding.shtml">Speech Encoding</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../gsmevents/events.shtml">GSM Events</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../air/radiolink.shtml">Cell Selection/Reselection</a>
+
+<br>
+
+<a href = "../updates.shtml">Updates</a>
+&nbsp;&nbsp;&nbsp;
+
+<!--<a href = "../forum/index.php" target = "BB">Bulletin Board</a>
+&nbsp;&nbsp;&nbsp;-->
+
+<a href = "../sitemap.shtml">Sitemap</a>
+&nbsp;&nbsp;&nbsp;
+
+<a href = "../contact/contact.shtml">Contact Me</a>
+
+
+
+
+
+
+</font>
+
+<br><br>
+<a href = "http://www.gsmfordummies.com/index.html">Home</a>
+
+</center>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-6152103-1");
+pageTracker._trackPageview();
+</script>
+</BODY></HTML>
