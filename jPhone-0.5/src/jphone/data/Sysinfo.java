@@ -477,7 +477,7 @@ public class Sysinfo implements Comparable<Sysinfo> {
 		int t3 = Integer.parseInt(str.nextToken());
 
 		this.setProperty("cell_id", cell_id + "");
-		this.setProperty("mcc", mcc + "");
+		this.setProperty("mcc", Integer.toHexString(mcc) + "");
 		this.setProperty("mnc", mnc + "");
 		this.setProperty("lac", lac + "");
 		this.setProperty("si3_cch_conf", cch_conf + "");
@@ -554,7 +554,7 @@ public class Sysinfo implements Comparable<Sysinfo> {
 		int t2 = Integer.parseInt(str.nextToken());
 		int t3 = Integer.parseInt(str.nextToken());
 
-		this.setProperty("mcc", mcc + "");
+		this.setProperty("mcc", Integer.toHexString(mcc) + "");
 		this.setProperty("mnc", mnc + "");
 		this.setProperty("lac", lac + "");
 		this.setProperty("ms_txpwr_max_cch", ms_txpwr_max_ccch + "");
