@@ -100,30 +100,30 @@ public class ScanPanel extends JPanel implements ActionListener,
 
 		controlconstraints.gridx = 6;
 		controlconstraints.gridy = 0;
-		JButton autoTune = new JButton("Auto");
-		autoTune.addActionListener(this);
-		this.add(autoTune, controlconstraints);
-
-		controlconstraints.gridx = 7;
-		controlconstraints.gridy = 0;
 		JLabel num = new JLabel("Num: ");
 		this.add(num, controlconstraints);
 
-		controlconstraints.gridx = 8;
+		controlconstraints.gridx = 7;
 		controlconstraints.gridy = 0;
 		numTowers = new JTextField();
 		this.add(numTowers, controlconstraints);
 
-		controlconstraints.gridx = 9;
+		controlconstraints.gridx = 8;
 		controlconstraints.gridy = 0;
 		JLabel wait = new JLabel("Wait (ms): ");
 		this.add(wait, controlconstraints);
 
-		controlconstraints.gridx = 10;
+		controlconstraints.gridx = 9;
 		controlconstraints.gridy = 0;
 		waitTime = new JTextField();
 		this.add(waitTime, controlconstraints);
 
+		controlconstraints.gridx = 10;
+		controlconstraints.gridy = 0;
+		JButton autoTune = new JButton("Auto");
+		autoTune.addActionListener(this);
+		this.add(autoTune, controlconstraints);
+		
 		controlconstraints.gridx = 0;
 		controlconstraints.gridy = 1;
 		JLabel arfcn = new JLabel("arfcn");

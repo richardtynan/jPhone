@@ -28,6 +28,7 @@ import javax.swing.JTabbedPane;
 
 import jphone.data.CellTowersListener;
 import jphone.data.MobileStation;
+import jphone.gui.CatcherPanel;
 import jphone.gui.ChannelPanel;
 import jphone.gui.RamProgress;
 import jphone.gui.RxTxPanel;
@@ -49,9 +50,6 @@ public class GUI implements CellTowersListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JTabbedPane tabs = new JTabbedPane();
-
-		//PhonePanel phonePanel = new PhonePanel();
-		//tabs.addTab("Phone", phonePanel);
 
 		ChannelPanel channelPanel = new ChannelPanel(mobile);
 		JScrollPane channelPane = new JScrollPane(channelPanel);
@@ -75,6 +73,13 @@ public class GUI implements CellTowersListener {
 		scanPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		tabs.addTab("Scan", scanPane);
 
+		CatcherPanel catcherPanel = new CatcherPanel(mobile);
+		this.listeners.addElement(catcherPanel);
+		JScrollPane catcherPane = new JScrollPane(catcherPanel);
+		catcherPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		catcherPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		tabs.addTab("Catcher", catcherPane);
+		
 		rxtxPanel = new RxTxPanel(mobile);
 		tabs.addTab("RxTx", rxtxPanel);
 
