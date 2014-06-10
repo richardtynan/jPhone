@@ -1,0 +1,20 @@
+1402402866170: battery_compal_e88_init: starting up
+1402402866195: 
+
+OsmocomBB Layer 1 (revision osmocon_v0.0.0-1349-g24df176-modified)
+1402402866199: ======================================================================
+1402402866201: Device ID code: 0xb4fb
+1402402866205: Device Version code: 0x0000
+1402402866209: ARM ID code: 0xfff3
+cDSP ID code: 0x0128
+Die ID code: 6c170b2c93021564
+======================================================================
+REG_DPLL=0x2413
+CNTL_ARM_CLK=0xf0a1
+CNTL_CLK=0xff91
+CNTL_RST=0xfff3
+CNTL_ARM_DIV=0xfff9
+==========================1402402866225: ============================================
+Power up simcard:
+1402402867418: Assert DSP into Reset
+1402402867419: Releasing DSP from Reset

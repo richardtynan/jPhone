@@ -1,0 +1,234 @@
+1402403840268: battery_compal_e88_init: starting up
+1402403840282: 
+
+OsmocomBB Layer 1 (revision osmocon_v0.0.0-1349-g24df176-modified)
+1402403840286: ======================================================================
+1402403840287: Device ID code: 0xb4fb
+1402403840290: Device Version code: 0x0000
+1402403840294: ARM ID code: 0xfff3
+cDSP ID code: 0x0128
+Die ID code: 6c170b2c93021564
+======================================================================
+REG_DPLL=0x2413
+CNTL_ARM_CLK=0xf0a1
+CNTL_CLK=0xff91
+CNTL_RST=0xfff3
+CNTL_ARM_DIV=0xfff9
+==========================1402403840317: ============================================
+Power up simcard:
+1402403841510: Assert DSP into Reset
+1402403841510: Releasing DSP from Reset
+1402403841555: Setting some dsp_api.ndb values
+1402403841556: Setting API NDB parameters
+1402403841556: DSP Download Status: 0x0001
+1402403841557: DSP API Version: 0x0000 0x0000
+1402403841560: Finishing download phase
+1402403841583: DSP Download Status: 0x0002
+DSP API Version: 0x3606 0x0000
+LOST 2163!
+1402403845395: BAT-ADC: 564 691   0   0 1023 452 418 243  
+1402403845396: 	Charger at 5905 mV.
+1402403845396: 	Battery at 3856 mV.
+1402403845397: 	Charging at 0 mA.
+1402403845397: 	Battery capacity is 82%.
+1402403845415: 	Battery range is 3199..3999 mV.
+	Battery full at 468 LSB .. full at 585 LSB
+	Charging at 239 LSB (204 mA).
+	BCICTL2=0x000
+	battery-info.flags=0x00000000
+	bat_compal_e88_chg_state=0
+[34;1mCHARGER: external voltage connected![0m
+[34;1mCHARGER: Off --> Co1402403845424: nstant Current.[0m
+1402403845426: BCICTL2 is 0x023, CHGREG=239
+1402403850536: BAT-ADC: 583 598 237 207 1023 545 470 274  
+1402403850537: 	Charger at 5110 mV.
+1402403850538: 	Battery at 3985 mV.
+1402403850539: 	Charging at 202 mA.
+1402403850540: 	Battery capacity is 98%.
+1402403855671: 	Battery range is 3199..3999 mV.
+	Battery full at 468 LSB .. full at 585 LSB
+	Charging at 239 LSB (204 mA).
+	BCICTL2=0x023
+	battery-info.flags=0x00000007
+	bat_compal_e88_chg_state=1
+BAT-ADC: 583 583 243 209 1023 544 469 272  
+1402403855674: 	Charger at 4982 mV.
+1402403855676: 	Battery at 3985 mV.
+1402403855678: 	Charging at 208 mA.
+1402403855679: 	Battery capacity is 98%.
+1402403860801: 	Battery range is 3199..3999 mV.
+	Battery full at 468 LSB .. full at 585 LSB
+	Charging at 239 LSB (204 mA).
+	BCICTL2=0x023
+	battery-info.flags=0x00000007
+	bat_compal_e88_chg_state=1
+BAT-ADC: 583 584 242 208 1023 543 468 268  
+1402403860819: 	Charger at 4990 mV.
+1402403860819: 	Battery at 3985 mV.
+1402403860819: 	Charging at 207 mA.
+1402403860820: 	Battery capacity is 98%.
+1402403865932: 	Battery range is 3199..3999 mV.
+	Battery full at 468 LSB .. full at 585 LSB
+	Charging at 239 LSB (204 mA).
+	BCICTL2=0x023
+	battery-info.flags=0x00000007
+	bat_compal_e88_chg_state=1
+BAT-ADC: 584 592 241 208 1023 544 469 271  
+1402403865934: 	Charger at 5059 mV.
+1402403865936: 	Battery at 3992 mV.
+1402403865938: 	Charging at 206 mA.
+1402403865941: 	Battery capacity is 99%.
+1402403871063: 	Battery range is 3199..3999 mV.
+	Battery full at 468 LSB .. full at 585 LSB
+	Charging at 239 LSB (204 mA).
+	BCICTL2=0x023
+	battery-info.flags=0x00000007
+	bat_compal_e88_chg_state=1
+BAT-ADC: 582 594 240 207 1023 544 469 272  
+1402403871065: 	Charger at 5076 mV.
+1402403871067: 	Battery at 3979 mV.
+1402403871068: 	Charging at 205 mA.
+1402403871072: 	Battery capacity is 97%.
+1402403875488: 	Battery range is 3199..3999 mV.
+	Battery full at 468 LSB .. full at 585 LSB
+	Charging at 239 LSB (204 mA).
+	BCICTL2=0x023
+	battery-info.flags=0x00000007
+	bat_compal_e88_chg_state=1
+L1CTL_PM_REQ start=0 end=100
+1402403875494: PM MEAS: ARFCN=0, 35   dBm at baseband, -102 dBm at RF
+1402403875505: PM MEAS: ARFCN=1, 35   dBm at baseband, -102 dBm at RF
+1402403875521: PM MEAS: ARFCN=2, 34   dBm at baseband, -103 dBm at RF
+1402403875533: PM MEAS: ARFCN=3, 35   dBm at baseband, -102 dBm at RF
+1402403875548: PM MEAS: ARFCN=4, 35   dBm at baseband, -103 dBm at RF
+1402403875561: PM MEAS: ARFCN=5, 36   dBm at baseband, -102 dBm at RF
+1402403875575: PM MEAS: ARFCN=6, 36   dBm at baseband, -101 dBm at RF
+1402403875589: PM MEAS: ARFCN=7, 36   dBm at baseband, -102 dBm at RF
+1402403875602: PM MEAS: ARFCN=8, 36   dBm at baseband, -102 dBm at RF
+1402403875616: PM MEAS: ARFCN=9, 40   dBm at baseband, -97  dBm at RF
+1402403875630: PM MEAS: ARFCN=10, 35   dBm at baseband, -103 dBm at RF
+1402403875644: PM MEAS: ARFCN=11, 36   dBm at baseband, -101 dBm at RF
+1402403875658: PM MEAS: ARFCN=12, 35   dBm at baseband, -102 dBm at RF
+1402403875671: PM MEAS: ARFCN=13, 36   dBm at baseband, -101 dBm at RF
+1402403875685: PM MEAS: ARFCN=14, 36   dBm at baseband, -101 dBm at RF
+1402403875699: PM MEAS: ARFCN=15, 38   dBm at baseband, -100 dBm at RF
+1402403875713: PM MEAS: ARFCN=16, 37   dBm at baseband, -100 dBm at RF
+1402403875727: PM MEAS: ARFCN=17, 34   dBm at baseband, -103 dBm at RF
+1402403875741: PM MEAS: ARFCN=18, 36   dBm at baseband, -101 dBm at RF
+1402403875755: PM MEAS: ARFCN=19, 51   dBm at baseband, -86  dBm at RF
+1402403875769: PM MEAS: ARFCN=20, 44   dBm at baseband, -93  dBm at RF
+1402403875782: PM MEAS: ARFCN=21, 41   dBm at baseband, -96  dBm at RF
+1402403875796: PM MEAS: ARFCN=22, 37   dBm at baseband, -100 dBm at RF
+1402403875811: PM MEAS: ARFCN=23, 37   dBm at baseband, -100 dBm at RF
+1402403875824: PM MEAS: ARFCN=24, 55   dBm at baseband, -83  dBm at RF
+1402403875838: PM MEAS: ARFCN=25, 40   dBm at baseband, -98  dBm at RF
+1402403875852: PM MEAS: ARFCN=26, 36   dBm at baseband, -101 dBm at RF
+1402403875865: PM MEAS: ARFCN=27, 37   dBm at baseband, -100 dBm at RF
+1402403875879: PM MEAS: ARFCN=28, 41   dBm at baseband, -97  dBm at RF
+1402403875893: PM MEAS: ARFCN=29, 39   dBm at baseband, -98  dBm at RF
+1402403875907: PM MEAS: ARFCN=30, 38   dBm at baseband, -99  dBm at RF
+1402403875921: PM MEAS: ARFCN=31, 36   dBm at baseband, -101 dBm at RF
+1402403875935: PM MEAS: ARFCN=32, 37   dBm at baseband, -100 dBm at RF
+1402403875949: PM MEAS: ARFCN=33, 39   dBm at baseband, -99  dBm at RF
+1402403875962: PM MEAS: ARFCN=34, 55   dBm at baseband, -82  dBm at RF
+1402403875976: PM MEAS: ARFCN=35, 38   dBm at baseband, -99  dBm at RF
+1402403875990: PM MEAS: ARFCN=36, 55   dBm at baseband, -82  dBm at RF
+1402403876004: PM MEAS: ARFCN=37, 43   dBm at baseband, -94  dBm at RF
+1402403876018: PM MEAS: ARFCN=38, 41   dBm at baseband, -96  dBm at RF
+1402403876031: PM MEAS: ARFCN=39, 56   dBm at baseband, -81  dBm at RF
+1402403876045: PM MEAS: ARFCN=40, 40   dBm at baseband, -97  dBm at RF
+1402403876059: PM MEAS: ARFCN=41, 39   dBm at baseband, -98  dBm at RF
+1402403876073: PM MEAS: ARFCN=42, 38   dBm at baseband, -99  dBm at RF
+1402403876087: PM MEAS: ARFCN=43, 39   dBm at baseband, -98  dBm at RF
+1402403876101: PM MEAS: ARFCN=44, 39   dBm at baseband, -98  dBm at RF
+1402403876116: PM MEAS: ARFCN=45, 42   dBm at baseband, -95  dBm at RF
+1402403876128: PM MEAS: ARFCN=46, 48   dBm at baseband, -89  dBm at RF
+1402403876142: PM MEAS: ARFCN=47, 49   dBm at baseband, -88  dBm at RF
+1402403876156: PM MEAS: ARFCN=48, 40   dBm at baseband, -97  dBm at RF
+1402403876170: PM MEAS: ARFCN=49, 39   dBm at baseband, -98  dBm at RF
+1402403876178: BAT-ADC: 584 580 241 212 1023 544 469 272  
+1402403876180: 	Charger at 4956 mV.
+1402403876182: 	Battery at 3992 mV.
+1402403876185: 	Charging at 206 mA.
+1402403876951: 	Battery capacity is 99%.
+1402403876952: 	Battery range is 3199..3999 mV.
+	Battery full at 468 LSB .. full at 585 LSB
+	Charging at 239 LSB (204 mA).
+	BCICTL2=0x023
+	battery-info.flags=0x00000007
+	bat_compal_e88_chg_state=1
+PM MEAS: ARFCN=50, 39   dBm at baseband, -98  dBm at RF
+1402403876952: PM MEAS: ARFCN=51, 47   dBm at baseband, -90  dBm at RF
+1402403876953: PM MEAS: ARFCN=52, 40   dBm at baseband, -97  dBm at RF
+1402403876953: PM MEAS: ARFCN=53, 44   dBm at baseband, -93  dBm at RF
+1402403876953: PM MEAS: ARFCN=54, 39   dBm at baseband, -98  dBm at RF
+1402403876969: PM MEAS: ARFCN=55, 38   dBm at baseband, -99  dBm at RF
+1402403876969: PM MEAS: ARFCN=56, 43   dBm at baseband, -94  dBm at RF
+1402403876970: PM MEAS: ARFCN=57, 57   dBm at baseband, -80  dBm at RF
+1402403876970: PM MEAS: ARFCN=58, 48   dBm at baseband, -89  dBm at RF
+1402403876970: PM MEAS: ARFCN=59, 43   dBm at baseband, -94  dBm at RF
+1402403876971: PM MEAS: ARFCN=60, 39   dBm at baseband, -98  dBm at RF
+1402403876971: PM MEAS: ARFCN=61, 45   dBm at baseband, -92  dBm at RF
+1402403876971: PM MEAS: ARFCN=62, 56   dBm at baseband, -81  dBm at RF
+1402403876971: PM MEAS: ARFCN=63, 39   dBm at baseband, -98  dBm at RF
+1402403876971: PM MEAS: ARFCN=64, 38   dBm at baseband, -99  dBm at RF
+1402403876972: PM MEAS: ARFCN=65, 44   dBm at baseband, -93  dBm at RF
+1402403876972: PM MEAS: ARFCN=66, 39   dBm at baseband, -98  dBm at RF
+1402403876972: PM MEAS: ARFCN=67, 39   dBm at baseband, -98  dBm at RF
+1402403876973: PM MEAS: ARFCN=68, 38   dBm at baseband, -99  dBm at RF
+1402403876973: PM MEAS: ARFCN=69, 38   dBm at baseband, -100 dBm at RF
+1402403876973: PM MEAS: ARFCN=70, 38   dBm at baseband, -99  dBm at RF
+1402403876973: PM MEAS: ARFCN=71, 44   dBm at baseband, -93  dBm at RF
+1402403876974: PM MEAS: ARFCN=72, 39   dBm at baseband, -98  dBm at RF
+1402403876974: PM MEAS: ARFCN=73, 43   dBm at baseband, -95  dBm at RF
+1402403876994: PM MEAS: ARFCN=74, 37   dBm at baseband, -100 dBm at RF
+1402403876995: PM MEAS: ARFCN=75, 44   dBm at baseband, -93  dBm at RF
+1402403876995: PM MEAS: ARFCN=76, 39   dBm at baseband, -98  dBm at RF
+1402403876997: PM MEAS: ARFCN=77, 47   dBm at baseband, -91  dBm at RF
+1402403876997: PM MEAS: ARFCN=78, 37   dBm at baseband, -100 dBm at RF
+1402403876997: PM MEAS: ARFCN=79, 45   dBm at baseband, -92  dBm at RF
+1402403876998: PM MEAS: ARFCN=80, 43   dBm at baseband, -94  dBm at RF
+1402403876998: PM MEAS: ARFCN=81, 48   dBm at baseband, -89  dBm at RF
+1402403876998: PM MEAS: ARFCN=82, 39   dBm at baseband, -99  dBm at RF
+1402403876998: PM MEAS: ARFCN=83, 39   dBm at baseband, -98  dBm at RF
+1402403876999: PM MEAS: ARFCN=84, 39   dBm at baseband, -98  dBm at RF
+1402403876999: PM MEAS: ARFCN=85, 44   dBm at baseband, -94  dBm at RF
+1402403877000: PM MEAS: ARFCN=86, 37   dBm at baseband, -100 dBm at RF
+1402403877001: PM MEAS: ARFCN=87, 37   dBm at baseband, -100 dBm at RF
+1402403877002: PM MEAS: ARFCN=88, 37   dBm at baseband, -100 dBm at RF
+1402403877003: PM MEAS: ARFCN=89, 37   dBm at baseband, -100 dBm at RF
+1402403877004: PM MEAS: ARFCN=90, 36   dBm at baseband, -101 dBm at RF
+1402403877004: PM MEAS: ARFCN=91, 37   dBm at baseband, -100 dBm at RF
+1402403877005: PM MEAS: ARFCN=92, 36   dBm at baseband, -101 dBm at RF
+1402403877005: PM MEAS: ARFCN=93, 41   dBm at baseband, -96  dBm at RF
+1402403877007: PM MEAS: ARFCN=94, 38   dBm at baseband, -99  dBm at RF
+1402403877008: PM MEAS: ARFCN=95, 39   dBm at baseband, -98  dBm at RF
+1402403877009: PM MEAS: ARFCN=96, 43   dBm at baseband, -94  dBm at RF
+1402403877009: PM MEAS: ARFCN=97, 44   dBm at baseband, -93  dBm at RF
+1402403877010: PM MEAS: ARFCN=98, 36   dBm at baseband, -101 dBm at RF
+1402403877010: PM MEAS: ARFCN=99, 40   dBm at baseband, -97  dBm at RF
+1402403878298: PM MEAS: ARFCN=100, 37   dBm at baseband, -100 dBm at RF
+1402403881319: BAT-ADC: 584 578 240 211 1023 544 469 271  
+1402403881320: 	Charger at 4939 mV.
+1402403881320: 	Battery at 3992 mV.
+1402403881320: 	Charging at 205 mA.
+1402403881324: 	Battery capacity is 99%.
+1402403886456: 	Battery range is 3199..3999 mV.
+	Battery full at 468 LSB .. full at 585 LSB
+	Charging at 239 LSB (204 mA).
+	BCICTL2=0x023
+	battery-info.flags=0x00000007
+	bat_compal_e88_chg_state=1
+BAT-ADC: 585 594 238 210 1023 545 470 274  
+1402403886457: 	Charger at 5076 mV.
+1402403886459: 	Battery at 3999 mV.
+1402403886461: 	Charging at 203 mA.
+1402403886464: 	Battery capacity is 100%.
+1402403886487: 	Battery range is 3199..3999 mV.
+	Battery full at 468 LSB .. full at 585 LSB
+	Charging at 239 LSB (204 mA).
+	BCICTL2=0x023
+	battery-info.flags=0x00000007
+	bat_compal_e88_chg_state=1
+[34;1mCHARGER: Constant Current --> Constant Voltage.[0m
+BCICTL2 is 0x02

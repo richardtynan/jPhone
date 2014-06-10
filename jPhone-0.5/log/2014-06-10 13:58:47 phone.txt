@@ -1,0 +1,11 @@
+1402405133134: 	Battery range is 3199..3999 mV.
+	Battery full at 468 LSB .. full at 585 LSB
+	Charging at 239 LSB (204 mA).
+	BCICTL2=0x021
+	battery-info.flags=0x00000003
+	bat_compal_e88_chg_state=2
+BAT-ADC: 592 618 184 172 1023 538 463 259  
+1402405133142: 	Charger at 5281 mV.
+1402405133142: 	Battery at 4047 mV.
+1402405133143: 	Charging at 157 mA.
+1402405133143: 	Battery capacity is 100%.
