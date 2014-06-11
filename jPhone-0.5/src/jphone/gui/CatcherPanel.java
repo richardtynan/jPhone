@@ -1,23 +1,23 @@
 /* (C) 2012 by Richard Tynan
-*  (C) 2012 by Privacy International
-*
-* All Rights Reserved
-*
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation; either version 2 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License along
-* with this program; if not, write to the Free Software Foundation, Inc.,
-* 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-*
-*/
+ *  (C) 2012 by Privacy International
+ *
+ * All Rights Reserved
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ *
+ */
 package jphone.gui;
 
 import java.awt.GridBagConstraints;
@@ -35,13 +35,16 @@ import jphone.Mobile;
 import jphone.data.CellTowersListener;
 import jphone.data.MobileStation;
 
-public class ScanPanel extends JPanel implements ActionListener,
+public class CatcherPanel extends JPanel implements ActionListener,
 		CellTowersListener {
 
 	private static final long serialVersionUID = -7438357925976188173L;
 
-	private String[] scanProperties = { "rx_level", "si1", "si2", "si2bis",
-			"si2ter", "si3", "si4" };
+	private String[] scanProperties = { "rx_level", 
+			"rxlev_acc_min_db", "ms_txpwr_max_cch", "cell_resel_hyst_db", 
+			"si3_rxlev_acc_min", "si3_ms_txpwr_max_ccch", "si3_cell_resel_hyst", 
+			"si4_rxlev_acc_min", "si4_ms_txpwr_max_ccch", "si4_cell_resel_hyst", 
+			"cell_id", "mcc", "mnc", };
 
 	private JTextField scanFrom;
 	private JTextField scanTo;
@@ -51,7 +54,7 @@ public class ScanPanel extends JPanel implements ActionListener,
 
 	private Mobile mobile;
 
-	public ScanPanel(Mobile mobile) {
+	public CatcherPanel(Mobile mobile) {
 		this.mobile = mobile;
 
 		GridBagLayout controllayout = new GridBagLayout();
@@ -123,7 +126,7 @@ public class ScanPanel extends JPanel implements ActionListener,
 		JButton autoTune = new JButton("Auto");
 		autoTune.addActionListener(this);
 		this.add(autoTune, controlconstraints);
-		
+
 		controlconstraints.gridx = 0;
 		controlconstraints.gridy = 1;
 		JLabel arfcn = new JLabel("arfcn");
