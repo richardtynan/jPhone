@@ -40,11 +40,10 @@ public class CatcherPanel extends JPanel implements ActionListener,
 
 	private static final long serialVersionUID = -7438357925976188173L;
 
-	private String[] scanProperties = { "rx_level", 
+	private String[] scanProperties = { "rx_level", "mcc_text", "mnc_text", "cell_id", "mcc", "mnc",
 			"rxlev_acc_min_db", "ms_txpwr_max_cch", "cell_resel_hyst_db", 
 			"si3_rxlev_acc_min", "si3_ms_txpwr_max_ccch", "si3_cell_resel_hyst", 
-			"si4_rxlev_acc_min", "si4_ms_txpwr_max_ccch", "si4_cell_resel_hyst", 
-			"cell_id", "mcc", "mnc", };
+			"si4_rxlev_acc_min", "si4_ms_txpwr_max_ccch", "si4_cell_resel_hyst" };
 
 	private JTextField scanFrom;
 	private JTextField scanTo;

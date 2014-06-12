@@ -20,6 +20,7 @@
 */
 package jphone.data;
 
+import gsm.MCCMNC;
 import gsm.message.FBSBConfMessage;
 import gsm.message.L1PhDataIndMessage;
 
@@ -83,7 +84,7 @@ public class Sysinfo implements Comparable<Sysinfo> {
 			"nb_max_retrans", "nb_tx_integer", "nb_reest_denied",
 			"nb_cell_barr", "nb_class_barr" };
 
-	public static String[] misc = { "rx_level", "hopp_len" };
+	public static String[] misc = { "rx_level", "hopp_len", "mcc_text" , "mnc_text" };
 
 	public static String[] l1_fbsb_conf = { "l1_t1_rach", "l1_t2_rach",
 			"l1_t3_rach", "l1_tc_rach", "l1_chan_nr", "l1_link_id",
@@ -478,7 +479,10 @@ public class Sysinfo implements Comparable<Sysinfo> {
 
 		this.setProperty("cell_id", cell_id + "");
 		this.setProperty("mcc", mcc + "");
+		String[] vals = MCCMNC.getMCCMNC(mcc, mnc);
+		this.setProperty("mcc_text", vals[0] + "");
 		this.setProperty("mnc", mnc + "");
+		this.setProperty("mnc_text", vals[1] + "");
 		this.setProperty("lac", lac + "");
 		this.setProperty("si3_cch_conf", cch_conf + "");
 		this.setProperty("si3_bs_ag", bs_ag + "");
@@ -555,7 +559,10 @@ public class Sysinfo implements Comparable<Sysinfo> {
 		int t3 = Integer.parseInt(str.nextToken());
 
 		this.setProperty("mcc", mcc + "");
+		String[] vals = MCCMNC.getMCCMNC(mcc, mnc);
+		this.setProperty("mcc_text", vals[0] + "");
 		this.setProperty("mnc", mnc + "");
+		this.setProperty("mnc_text", vals[1] + "");
 		this.setProperty("lac", lac + "");
 		this.setProperty("ms_txpwr_max_cch", ms_txpwr_max_ccch + "");
 		this.setProperty("si4_cell_resel_hyst", cell_resel_hyst + "");
